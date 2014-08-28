@@ -31,7 +31,7 @@ class representativeList
 
     void Insert(REPRESENTATIVE* newNode);
     
-    void searchValue();
+    void searchValue(short totalNum);
     
     REPRESENTATIVE *head;   
     REPRESENTATIVE *tail;   // pointer to the last node on the list

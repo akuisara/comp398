@@ -72,7 +72,7 @@ int main(int argc, const char * argv[])
     
     
     // 4) calls the function to search for certain values
-    reprList.searchValue();
+    reprList.searchValue(n);
     
     
     // 5) displays the plain text

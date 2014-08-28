@@ -44,24 +44,28 @@ void representativeList::Insert(REPRESENTATIVE* newNode)
     newNode->next = hold;
 }
 
-void representativeList::searchValue()
+void representativeList::searchValue(short n)
 {
     string searchName;
     cout << endl << "Please enter a name for searching: \n";
-    cin >> searchName;
+    getline (cin,searchName);
     
     REPRESENTATIVE *temp = head;
     
-    while (temp->name != searchName && temp->next != tail) {
+    short search;
+    while (temp->name != searchName && search <= n) {
+        cout << temp->name;
+        //Bug needs to fix: temp->name is always not euqal to searchName, even though they are the same
         temp = temp->next;
+        search++;
     }
     if (temp->name == searchName)
     {
-        cout << "Find the record" <<endl;
+        cout << "\n\nFind the record" <<endl;
         cout << searchName << ": " << temp->yearsServed << "," << temp->party << endl << endl;
     }
     else
-        cout << "Cannot find " <<searchName << endl << endl;
+        cout << "\n\nCannot find " <<searchName << endl << endl;
 
 }
 
