@@ -25,11 +25,11 @@ class representativeList
 {
   public:
     representativeList();
-    ~representativeList();
     
-    REPRESENTATIVE* createNode(string newName, string newYear, string newParty);
+    
+    void createNode(string newName, string newYear, string newParty);
 
-    void Insert(REPRESENTATIVE* newNode, representativeList myList);
+    void Insert(REPRESENTATIVE* newNode);
     
     void searchValue();
     

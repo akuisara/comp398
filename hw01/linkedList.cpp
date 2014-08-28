@@ -18,33 +18,12 @@ representativeList::representativeList()
     tail->yearsServed = "EMPTY";
     tail->party = "EMPTY";
     tail->next = 0;
-    head->name = "EMPTY";
-    head->yearsServed = "EMPTY";
-    head->party = "EMPTY";
+    head = tail;
     head->next = tail;
-    
-}
-
-representativeList::~representativeList()
-{
-    REPRESENTATIVE *A, *B;
-    A = head;
-    delete A;
-    
-    B = head->next;
-    
-    short i = 3;
-    while (B!=0) {
-        A = B;
-        delete B;
-        i--;
-        cout << i << endl;
-        B = A->next;
-    }
 }
 
 
-REPRESENTATIVE* representativeList::createNode(string newName, string newYear, string newParty)
+void representativeList::createNode(string newName, string newYear, string newParty)
 {
     REPRESENTATIVE* temp;
     temp = new REPRESENTATIVE;
@@ -52,11 +31,12 @@ REPRESENTATIVE* representativeList::createNode(string newName, string newYear, s
     temp->yearsServed = newYear;
     temp->party = newParty;
     temp->next = 0;
-    return temp;
+    
+    Insert(temp);
 }
 
 
-void representativeList::Insert(REPRESENTATIVE* newNode, representativeList myList)
+void representativeList::Insert(REPRESENTATIVE* newNode)
 {
     REPRESENTATIVE *hold;
     hold = head->next;
@@ -67,17 +47,21 @@ void representativeList::Insert(REPRESENTATIVE* newNode, representativeList myLi
 void representativeList::searchValue()
 {
     string searchName;
-    cout << "Please enter a name for searching: \n";
+    cout << endl << "Please enter a name for searching: \n";
     cin >> searchName;
     
-    REPRESENTATIVE *temp = head->next;
+    REPRESENTATIVE *temp = head;
+    
     while (temp->name != searchName && temp->next != tail) {
         temp = temp->next;
     }
     if (temp->name == searchName)
-        cout << "Find " << searchName << endl;
+    {
+        cout << "Find the record" <<endl;
+        cout << searchName << ": " << temp->yearsServed << "," << temp->party << endl << endl;
+    }
     else
-        cout << "Cannot find " <<searchName << endl;
+        cout << "Cannot find " <<searchName << endl << endl;
 
 }
 

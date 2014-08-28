@@ -22,35 +22,19 @@ struct reprMA
 
 int main(int argc, const char * argv[])
 {
-
-    ifstream myFileCount("Representatives.csv");
+    // 1) ~ 3) 
     
-    if (!myFileCount.is_open())
+    ifstream myFile("Representatives.csv");
+    
+    if (!myFile.is_open())
     {
         cout<<"ERROR";
     }
     
     string myLine;
+    short n = 33; // There are 33 people in the list
     
-    getline ( myFileCount, myLine, ',' ); // takes out the title
-    
-    short num = 0;
-    while(!myFileCount.eof()) {
-        getline ( myFileCount, myLine, ',' ); // reads a string until next comma:
-        num++;
-    }
-    
-    short n = num / 3; //calculate number of people, which is 33
-    
-    myFileCount.close();
-    
-    
-    
-    // 1) ~ 3)
-    
-    ifstream myFile("Representatives.csv");
-    
-    REPR rList[34];
+    REPR rList[33];
     
     getline ( myFile, myLine, ',' ); // takes out the title
     
@@ -60,7 +44,7 @@ int main(int argc, const char * argv[])
         
         if (count % 3 == 0) {
             rList[people].name = myLine;
-            cout << people << ": " << rList[people].name << endl;
+            //cout << people << ": " << rList[people].name << endl;
         }
         else if (count % 3 == 1)
         {
@@ -75,18 +59,14 @@ int main(int argc, const char * argv[])
         }
         count++;
         
-    }
+    } // stores all the data to rList
+    
     
     representativeList reprList;
     
     for (short i=0; i<n; i++) {
-        REPRESENTATIVE *tempRepr;
-        tempRepr = reprList.createNode(rList[i].name, rList[i].yearsServed, rList[i].party);
-        reprList.Insert(tempRepr, reprList);
-        cout << 'r' << endl;
+        reprList.createNode(rList[i].name, rList[i].yearsServed, rList[i].party);
     }
-    
-    cout << reprList.head->next <<endl;
     
     myFile.close();
     
