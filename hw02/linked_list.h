@@ -12,27 +12,27 @@
 #include <iostream>
 using namespace std;
 
-struct RepresentativeMA
+struct StateAbbr
 {
-    string name, years_served, party;  // hold the representative's basic information
-	struct RepresentativeMA  *next;	   // pointer to next node in the list
+    string name, abbreviation;  // hold the states' basic information
+	struct StateAbbr  *next;	   // pointer to next node in the list
 };
 
 
-class RepresentativeList
+class StateList
 {
   public:
-    RepresentativeList();   // Constructor
-    ~RepresentativeList();  // Destructor 
+    StateList();   // Constructor
+    ~StateList();  // Destructor
     
     void populate_list();
-    void insert(RepresentativeMA* new_node);
-    void search_value(const short k_total_representatives);
+    void insert(StateAbbr* new_node);
+    void search_value(const short k_total_states);
     void display_content();
     
   private:
-    RepresentativeMA *head;  // pointer to the buffer node
-    RepresentativeMA *tail;  // pointer to the last node
-};  // class RepresentativeList
+    StateAbbr *head;  // pointer to the buffer node
+    StateAbbr *tail;  // pointer to the last node
+};  // class StateList
 
 #endif

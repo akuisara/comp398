@@ -12,19 +12,19 @@
 
 int main(int argc, const char * argv[])
 {
-    const short k_total_representatives = 33;  // global variable, total number of representatives
+    const short k_total_states = 51;  // global variable, total number of states contained in the database
     
     // 1) ~ 2) Creates an empty list and added a node at the end of this list
-    RepresentativeList ReprList;
+    StateList L;
     
     // 3) populates the list from the flat file database
-    ReprList.populate_list();
+    L.populate_list();
     
     // 4) calls the function to search for certain values
-    ReprList.search_value(k_total_representatives);
+    L.search_value(k_total_states);
     
     // 5) displays the plain text
-    ReprList.display_content();
+    L.display_content();
     
     return 0;
 }

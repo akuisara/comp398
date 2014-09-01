@@ -8,26 +8,25 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
 using namespace std;
 
 #include "linked_list.h"
 
-RepresentativeList::RepresentativeList()
+StateList::StateList()
 // Constructor
 {
-    tail = new RepresentativeMA;  // creates an empty node at the end of the list
+    tail = new StateAbbr;  // creates an empty node at the end of the list
     tail->name = "NULL";
     tail->next = 0;
     
-    head = new RepresentativeMA;  // creates a butter node
+    head = new StateAbbr;  // creates a butter node
     head->name = "BUFFER";
     head->next = tail;
 }
 
 
 
-RepresentativeList::~RepresentativeList()
+StateList::~StateList()
 // Destructor
 {
     delete head;
@@ -35,10 +34,10 @@ RepresentativeList::~RepresentativeList()
 
 
 
-void RepresentativeList::populate_list()
+void StateList::populate_list()
 // This function reads the data from flat file database and calls insert() to add the new node to the list
 {
-    ifstream my_file("representatives.csv");
+    ifstream my_file("states.csv");
     
     if (!my_file.is_open())
     {  //exit if cannot open the file
@@ -50,14 +49,11 @@ void RepresentativeList::populate_list()
     
     getline ( my_file, my_line, '\n' );  // takes out the titles
     
-    short records = 0;  // counts the records of names and years
-    
     while(!my_file.eof()) {
-        RepresentativeMA* temp_pointer = new RepresentativeMA;
+        StateAbbr* temp_pointer = new StateAbbr;
         
         getline ( my_file, my_line, '\n' );  // reads a record of an representative
         
-        const short k_comma_seperated_records = 2;  // only names and years are seperated by comma
         string temp = "";
         
         for(int i = 0; i < my_line.length(); i++)
@@ -65,19 +61,13 @@ void RepresentativeList::populate_list()
             temp += my_line[i];
             if(my_line[i] == ',')
             {
-                if (records % k_comma_seperated_records == 0) {
-                    temp_pointer->name = temp;
-                    // cout << temp_pointer->name << endl;
-                } else if (records % k_comma_seperated_records == 1) {
-                    temp_pointer->years_served = temp;
-                    // cout << temp_pointer->years_served << endl;
-                }
+                temp_pointer->name = temp;
+                //cout << temp_pointer->name << endl;
                 temp = "";
-                records++;
             }
         }
-        temp_pointer->party = temp;
-        // cout << temp_pointer->party << endl;
+        temp_pointer->abbreviation = temp;
+        // cout << temp_pointer->abbreviation << endl;
         
         temp_pointer->next = tail;
         
@@ -89,39 +79,39 @@ void RepresentativeList::populate_list()
 
 
 
-void RepresentativeList::insert(RepresentativeMA* new_node)
+void StateList::insert(StateAbbr* new_node)
 // This function insert the new node to the current linked list
 {
-    RepresentativeMA *temp = head->next;  // creates a temp pointer to hold the first node after the buffer node
+    StateAbbr *temp = head->next;  // creates a temp pointer to hold the first node after the buffer node
     head->next = new_node;
     new_node->next = temp;
 }  // end insert()
 
 
 
-void RepresentativeList::search_value(const short k_total_representatives)
+void StateList::search_value(const short k_total_states)
 // This function allows users to search for a record
 {
     string search_name;  // the input string entered by user
-    cout << endl << "Please enter a name for searching: \n";
-    cout << "(For example: George Partridge)\n\n";
+    cout << endl << "Please enter a state name to search its abbreviation: \n";
+    cout << "(For example: Massachusetts)\n\n";
     getline (cin,search_name);
     
-    search_name = search_name + ',';  // since the input file is .csv, so the value is comma seperated
+    search_name = "\"" + search_name + "\",";  // since the input file is .csv, so the value is comma seperated
     
-    RepresentativeMA *temp = head;  // creates a temp pointer in order to search the value in the linked list
+    StateAbbr *temp = head;  // creates a temp pointer in order to search the value in the linked list
     
     short search = 0;  // number of nodes has been searched so far
     
     while (temp->name != search_name &&
-           search <= k_total_representatives) {
+           search <= k_total_states) {
         temp = temp->next;
         search++;
     }
     if (temp->name == search_name)
     {   // if find the name entered by user, then print out the whole record
         cout << "\n\nFind the record:" <<endl;
-        cout << search_name << temp->years_served << temp->party << endl << endl;
+        cout << search_name << temp->abbreviation << endl << endl;
     }
     else
         cout << "\n\nCannot find " <<search_name << endl << endl;
@@ -130,15 +120,18 @@ void RepresentativeList::search_value(const short k_total_representatives)
 
 
 
-void RepresentativeList::display_content()
+void StateList::display_content()
 // This function prints all the content to the console
 {
-    ifstream display("representatives.csv");
+    ifstream display("states.csv");
     string line;  // a string contains a line
+    
+    ofstream output_plaintext;
+    output_plaintext.open("plaintext.txt");
     
     while(!display.eof()) {
         getline ( display, line, ',' ); // reads a string until next comma:
-        cout << line;
+        output_plaintext << line;
     }
     display.close();
 }  // end display_content()
