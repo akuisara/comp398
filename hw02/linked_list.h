@@ -14,7 +14,7 @@ using namespace std;
 
 struct StateAbbr
 {
-    string name, abbreviation;  // hold the states' basic information
+    string name, abbreviation;     // store the states' basic information
 	struct StateAbbr  *next;	   // pointer to next node in the list
 };
 

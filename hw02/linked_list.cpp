@@ -12,8 +12,10 @@ using namespace std;
 
 #include "linked_list.h"
 
+// -----------------------------------------------------------------------
 StateList::StateList()
 // Constructor
+// POST: an empty list is created with a buffer node and an ending node
 {
     tail = new StateAbbr;  // creates an empty node at the end of the list
     tail->name = "NULL";
@@ -22,22 +24,22 @@ StateList::StateList()
     head = new StateAbbr;  // creates a butter node
     head->name = "BUFFER";
     head->next = tail;
-}
+} //CTOR
 
 
-
+// -----------------------------------------------------------------------
 StateList::~StateList()
 // Destructor
 {
     delete head;
-}
+} //DTOR
 
 
-
+// -----------------------------------------------------------------------
 void StateList::populate_list()
 // This function reads the data from flat file database and calls insert() to add the new node to the list
 {
-    ifstream my_file("states.csv");
+    ifstream my_file("states.csv");  // opens the input file
     
     if (!my_file.is_open())
     {  //exit if cannot open the file
@@ -47,92 +49,96 @@ void StateList::populate_list()
     
     string my_line;  // a string contains a line
     
-    getline ( my_file, my_line, '\n' );  // takes out the titles
+    getline (my_file, my_line, '\n');  // takes out the titles
     
     while(!my_file.eof()) {
-        StateAbbr* temp_pointer = new StateAbbr;
+        StateAbbr* temp_pointer = new StateAbbr;  // creates a temp pointer and builds a new node
         
-        getline ( my_file, my_line, '\n' );  // reads a record of an representative
+        getline ( my_file, my_line, '\n' );  // reads the records of a state
         
-        string temp = "";
+        string temp = "";  // a string stores the segment reading from a line
         
         for(int i = 0; i < my_line.length(); i++)
         {   // within the length of this line, reads the segment
             temp += my_line[i];
             if(my_line[i] == ',')
             {
-                temp_pointer->name = temp;
-                //cout << temp_pointer->name << endl;
+                temp_pointer->name = temp;  // stores this state's name in this new node
                 temp = "";
             }
         }
-        temp_pointer->abbreviation = temp;
-        // cout << temp_pointer->abbreviation << endl;
-        
-        temp_pointer->next = tail;
+        temp_pointer->abbreviation = temp;  // stores this state's abbreviation in this new node
         
         insert(temp_pointer);  // call insert() to insert this newly created node
     }
     
     my_file.close();
-}  // end populate_list()
+}  // populate_list()
 
 
-
+// -----------------------------------------------------------------------
 void StateList::insert(StateAbbr* new_node)
 // This function insert the new node to the current linked list
+// PRE-condition: a newly created node is assigned
 {
     StateAbbr *temp = head->next;  // creates a temp pointer to hold the first node after the buffer node
-    head->next = new_node;
-    new_node->next = temp;
-}  // end insert()
+    head->next = new_node;         // buffer node points to the newly inserted node
+    new_node->next = temp;         // new node points to the next node
+}  // insert()
 
 
-
+// -----------------------------------------------------------------------
 void StateList::search_value(const short k_total_states)
-// This function allows users to search for a record
+// This function allows user to search for a record
+// PRE-condition: a constant integer k_total_states is assigned
 {
     string search_name;  // the input string entered by user
-    cout << endl << "Please enter a state name to search its abbreviation: \n";
-    cout << "(For example: Massachusetts)\n\n";
+    cout << endl << "Please enter a state name or an abbreviation: \n";
+    cout << "(For example: Massachusetts or MA)\n\n";
     getline (cin,search_name);
     
-    search_name = "\"" + search_name + "\",";  // since the input file is .csv, so the value is comma seperated
+    string search_name_state, search_name_abbr;
+    search_name_state = "\"" + search_name + "\",";  // state name is quoted and is ended with a comma in input file
+    search_name_abbr = "\"" + search_name + "\"";    // state abbreviation is quoted in input file
     
     StateAbbr *temp = head;  // creates a temp pointer in order to search the value in the linked list
     
     short search = 0;  // number of nodes has been searched so far
     
-    while (temp->name != search_name &&
+    while (temp->name != search_name_state &&
+           temp->abbreviation != search_name_abbr &&
            search <= k_total_states) {
         temp = temp->next;
         search++;
     }
-    if (temp->name == search_name)
+    if (temp->name == search_name_state || temp->abbreviation == search_name_abbr)
     {   // if find the name entered by user, then print out the whole record
         cout << "\n\nFind the record:" <<endl;
-        cout << search_name << temp->abbreviation << endl << endl;
+        cout << temp->name << temp->abbreviation << endl << endl;
     }
     else
         cout << "\n\nCannot find " <<search_name << endl << endl;
     
-}  // end search_value()
+}  // search_value()
 
 
-
+// -----------------------------------------------------------------------
 void StateList::display_content()
-// This function prints all the content to the console
+// This function prints all the content to the output file as plain-text
 {
-    ifstream display("states.csv");
-    string line;  // a string contains a line
+    ifstream display("states.csv");      // opens the input file
+    string line;                         // a string contains a line
     
-    ofstream output_plaintext;
+    ofstream output_plaintext;           // opens the output file
     output_plaintext.open("plaintext.txt");
     
     while(!display.eof()) {
-        getline ( display, line, ',' ); // reads a string until next comma:
-        output_plaintext << line;
+        getline ( display, line, ',' );  // reads a line from the input file
+        output_plaintext << line;        // writes this line to the output file
     }
+    
     display.close();
-}  // end display_content()
+    output_plaintext.close();
+    
+}  // display_content()
 
