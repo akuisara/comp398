@@ -4,87 +4,27 @@
 //
 //  Created by Qi Zhang on 8/27/14.
 //  Copyright (c) 2014 QZ. All rights reserved.
-//
+//  Summary: This program reads the flat file database and uses its data to create a linked list. It allows the users to search for a certain record. In the end, all the records are displayed on screen.
 
 #include <iostream>
-#include <fstream>
-using namespace std;
 
-#include "linkedList.h"
-
-typedef
-struct reprMA
-{
-    string name, yearsServed, party;  // hold the representative's basic information
-    
-} REPR; // define a node called REPRESENTATIVE
-
+#include "linked_list.h"
 
 int main(int argc, const char * argv[])
 {
-    // 1) ~ 3) 
+    const short k_total_representatives = 33;  // global variable, total number of representatives
     
-    ifstream myFile("Representatives.csv");
+    // 1) ~ 2) Creates an empty list and added a node at the end of this list
+    RepresentativeList ReprList;
     
-    if (!myFile.is_open())
-    {
-        cout<<"ERROR";
-    }
-    
-    string myLine;
-    short n = 33; // There are 33 people in the list
-    
-    REPR rList[33];
-    
-    getline ( myFile, myLine, ',' ); // takes out the title
-    
-    short count = 0, people = 0;
-    while(!myFile.eof()) {
-        getline ( myFile, myLine, ',' ); // reads a string until next comma:
-        
-        if (count % 3 == 0) {
-            rList[people].name = myLine;
-            //cout << people << ": " << rList[people].name << endl;
-        }
-        else if (count % 3 == 1)
-        {
-            rList[people].yearsServed = myLine;
-            //cout << people << ": " << rList[people].yearsServed << endl;
-        }
-        else
-        {
-            rList[people].party = myLine;
-            //cout << people << ": " << rList[people].party << endl;
-            people++;
-        }
-        count++;
-        
-    } // stores all the data to rList
-    
-    
-    representativeList reprList;
-    
-    for (short i=0; i<n; i++) {
-        reprList.createNode(rList[i].name, rList[i].yearsServed, rList[i].party);
-    }
-    
-    myFile.close();
-    
+    // 3) populates the list from the flat file database
+    ReprList.populate_list();
     
     // 4) calls the function to search for certain values
-    reprList.searchValue(n);
-    
+    ReprList.search_value(k_total_representatives);
     
     // 5) displays the plain text
-    ifstream display("Representatives.csv");
-    string line;
-    
-    while(!display.eof()) {
-        getline ( display, line, ',' ); // reads a string until next comma:
-        cout << line;
-    }
-    display.close();
-
+    ReprList.display_content();
     
     return 0;
 }
