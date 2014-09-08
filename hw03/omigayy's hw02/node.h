@@ -9,11 +9,10 @@
 using namespace std;
 
 // node.h -- these are the NODES on the list
-#ifndef 398HW01_NODE_H
-#define 398HW01_NODE_H //define guard
+#ifndef HW01_NODE_H
+#define HW01_NODE_H //define guard
 
 // NODE for ONE elephant
-typedef
 
 struct node{
 	string representative;

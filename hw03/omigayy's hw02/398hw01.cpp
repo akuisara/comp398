@@ -10,7 +10,7 @@
 
 int main(){
 
-	linklist test_ctor; //clear names
+	linklist a; //clear names
 	cout << "pass CTOR\n";
 
 	node a_node;
