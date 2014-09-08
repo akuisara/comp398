@@ -44,7 +44,7 @@ int main(int argc, const char * argv[])
         short i = 0;
         
         if (last_line[i] == '>' && my_line[i] != '>') {
-            output_string += "</blockquote>";
+            output_string += "</blockquote>\n\n";
             blockquote = false;
         }
         
@@ -94,7 +94,7 @@ int main(int argc, const char * argv[])
                     } else
                         header_num = 3;
                 } else {
-                    header_num = 2; cout << "here+++++";}
+                    header_num = 2;}
             } else
                 header_num = 1;
             
@@ -110,13 +110,13 @@ int main(int argc, const char * argv[])
             added_tag = "header";
         }
         
-        
+        string emphasis_line, emphasis_phrase;
         for(int i = 0; i < my_line.length(); i++)
         {   // within the length of this line, reads the segment
             temp += my_line[i];
             
             if (my_line[i] == '+') {
-                string temp_line = "";
+                string temp_line;
                 for (short j=i+1; j < my_line.length(); j++)
                     temp_line += my_line[j];
                 output_string += "<li>" + temp_line + "</li>\n\n";
@@ -124,28 +124,49 @@ int main(int argc, const char * argv[])
                 break;
             } else if (my_line[i] == '*') {
                 if (my_line[i+1] == '*') {
-                    string temp_line = "";
+                    string temp_line;
+                    for (int x=0; x<i; x++) {
+                        emphasis_line += my_line[x];
+                    }
+                    bool inside_emphasis_tags = false;
                     for (int j=i+2; j<my_line.length(); j++) {
-                        if (my_line[j] == '*') {
-                            output_string += "<strong>" + temp_line + "</strong>\n\n";
+                        if (my_line[j] == '*' && !inside_emphasis_tags) {
+                            emphasis_line += "<strong>" + temp_line + "</strong>";
                             added_tag = "style";
+                            inside_emphasis_tags = true;
                             break;
                         } else {
                             temp_line += my_line[j];
                         }
+                        if (inside_emphasis_tags) {
+                            emphasis_line += my_line[j];
+                        }
                     }
+                    output_string += "<p>" + emphasis_line + "</p>\n\n";
                     break;
                 } else {
                     string temp_line = "";
                     bool emphasis = false;
+                    bool inside_emphasis_tags = false;
                     for (int j=i+1; j<my_line.length(); j++) {
                         if (my_line[j] == '*') {
+                            inside_emphasis_tags = true;
                             emphasis = true;
-                            output_string += "<em>" + temp_line + "</em>\n\n";
+                            emphasis_line += "<em>" + temp_line + "</em>\n\n";
                             added_tag = "style";
                             break;
                         } else
                             temp_line += my_line[j];
+                        if (inside_emphasis_tags) {
+                            emphasis_line += my_line[j];
+                        }
+                    }
+                    if (emphasis) {
+                        output_string += "<p>";
+                        for (int x=0; x<i; x++) {
+                            output_string += my_line[x];
+                        }
+                        output_string += emphasis_line + "</p>\n\n";
                     }
                     if (!emphasis) {
                         output_string += "<li>" + temp_line + "</li>\n\n";
@@ -154,7 +175,7 @@ int main(int argc, const char * argv[])
                     break;
                 }
             } else {
-                if (last_line != "" && added_tag != "style" && added_tag != "header" && added_tag !="list" && added_tag !="blockquote"){
+                if (last_line != "" && added_tag != "style" && added_tag != "header" && added_tag !="list" && added_tag !="blockquote" && added_tag !=""){
                     output_string += "<p>" + last_line + "</p>\n\n";
                     break;
                 } else if (added_tag == "blockquote") {
@@ -167,6 +188,7 @@ int main(int argc, const char * argv[])
                 }
             }
         }
+        
         
         
         last_line = my_line;
