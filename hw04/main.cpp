@@ -34,8 +34,7 @@ int main(int argc, const char * argv[])
     string my_line, last_line;  // a string contains a line
     bool blockquote = false;
     
-    bool last_tag_list = false, last_tag_first_list = false,
-    need_close_list = false;
+    bool last_tag_list = false, last_tag_first_list = false;
     while(!my_file.eof()) {
         
         getline (my_file, my_line, '\n');  // takes out a line
@@ -70,7 +69,6 @@ int main(int argc, const char * argv[])
             }
              added_tag = "blockquote";
         }
-        
         
         
         if(my_line[i] == '=') {
@@ -205,7 +203,63 @@ int main(int argc, const char * argv[])
                     }
                     break;
                 }
-            } else {
+            } else if (my_line[i] == '[') {
+                string temp_content, temp_link, temp_title, temp_nonlink_start = "<p>", temp_nonlink_end = "</a>";
+                
+                for (int x=0; x<i; x++) {
+                    temp_nonlink_start += my_line[x];
+                }
+                temp_nonlink_start += "<a href=\"";
+                
+                short j = i+1;
+                while (j<my_line.length() && my_line[j] != ']') {
+                    temp_content += my_line[j];
+                    j++;
+                }
+
+                for (int x=j;x<my_line.length();x++){
+                    if (my_line[x] == '(') {
+                        j = x+1;
+                        break;
+                    }
+                }
+                
+                bool link_has_title = false;
+                while (j<my_line.length() && my_line[j] != ')') {
+                    if (my_line[j] != '\"' && !link_has_title) {
+                        temp_link += my_line[j];
+                    } else if (my_line[j] == '\"' && !link_has_title) {
+                        link_has_title = true;
+                        j++;
+                    }
+                    if (my_line[j] != '\"' && link_has_title)
+                        temp_title +=my_line[j];
+                    else if (my_line[j] == '\"' && link_has_title) {
+                        for (int x=j; j<my_line.length(); x++) {
+                            if (my_line[x] == '\"' && link_has_title) {
+                                j = x;
+                                break;
+                            } else if (my_line[x] == ')' && !link_has_title) {
+                                j = x;
+                                break;
+                            }
+                        }
+                    }
+                    j++;
+                }
+                j++;
+                while (j < my_line.length()) {
+                    temp_nonlink_end += my_line[j];
+                    j++;
+                }
+                temp_nonlink_end += "</p>\n\n";
+                
+                if (temp_title == "") {
+                    output_string += temp_nonlink_start+ temp_link + "\">" +temp_content + temp_nonlink_end;
+                } else
+                    output_string += temp_nonlink_start + temp_link + "\" title=\"" + temp_title + "\">" +temp_content + temp_nonlink_end;
+                
+            }else {
                 if (last_line != "" && added_tag != "style" && added_tag != "header" && added_tag !="list" && added_tag !="blockquote" && added_tag !=""){
                     output_string += "<p>" + last_line + "</p>\n\n";
                     break;
