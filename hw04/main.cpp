@@ -34,14 +34,22 @@ int main(int argc, const char * argv[])
     string my_line, last_line;  // a string contains a line
     bool blockquote = false;
     
-    
+    bool last_tag_list = false, last_tag_first_list = false,
+    need_close_list = false;
     while(!my_file.eof()) {
+        
         getline (my_file, my_line, '\n');  // takes out a line
         
         string temp = "";  // a string stores the line
         string added_tag;
         
         short i = 0;
+        
+        if (last_tag_list && my_line[i]!='*' && my_line[i]!='-'&&my_line[i] !='+') {
+            output_string += "</ul>\n\n";
+            last_tag_list = false;
+            last_tag_first_list = false;
+        }
         
         if (last_line[i] == '>' && my_line[i] != '>') {
             output_string += "</blockquote>\n\n";
@@ -63,6 +71,8 @@ int main(int argc, const char * argv[])
              added_tag = "blockquote";
         }
         
+        
+        
         if(my_line[i] == '=') {
             output_string += "<h1>" + last_line + "</h1>\n\n";
             added_tag = "header";
@@ -75,8 +85,15 @@ int main(int argc, const char * argv[])
                 string temp_line = "";
                 for (short j=i+1; j < my_line.length(); j++)
                     temp_line += my_line[j];
+                if ((!last_tag_list) && (!last_tag_first_list)) {
+                    output_string += "<ul>";
+                }
                 output_string += "<li>" + temp_line + "</li>\n\n";
                 added_tag = "list";
+                if (!last_tag_list) {
+                    last_tag_first_list = true;
+                }
+                last_tag_list = true;
             }
         }
         else if (my_line[i] == '#') {
@@ -119,8 +136,15 @@ int main(int argc, const char * argv[])
                 string temp_line;
                 for (short j=i+1; j < my_line.length(); j++)
                     temp_line += my_line[j];
+                if ((!last_tag_list) && (!last_tag_first_list)) {
+                    output_string += "<ul>";
+                }
                 output_string += "<li>" + temp_line + "</li>\n\n";
                 added_tag = "list";
+                if (!last_tag_list) {
+                    last_tag_first_list = true;
+                }
+                last_tag_list = true;
                 break;
             } else if (my_line[i] == '*') {
                 if (my_line[i+1] == '*') {
@@ -152,7 +176,7 @@ int main(int argc, const char * argv[])
                         if (my_line[j] == '*') {
                             inside_emphasis_tags = true;
                             emphasis = true;
-                            emphasis_line += "<em>" + temp_line + "</em>\n\n";
+                            emphasis_line += "<em>" + temp_line + "</em>";
                             added_tag = "style";
                             break;
                         } else
@@ -169,8 +193,15 @@ int main(int argc, const char * argv[])
                         output_string += emphasis_line + "</p>\n\n";
                     }
                     if (!emphasis) {
+                        if ((!last_tag_list) && (!last_tag_first_list)) {
+                            output_string += "<ul>";
+                        }
                         output_string += "<li>" + temp_line + "</li>\n\n";
                         added_tag = "list";
+                        if (!last_tag_list) {
+                            last_tag_first_list = true;
+                        }
+                        last_tag_list = true;
                     }
                     break;
                 }
@@ -189,9 +220,9 @@ int main(int argc, const char * argv[])
             }
         }
         
-        
-        
         last_line = my_line;
+        
+        
     }
     
     cout << output_string;
