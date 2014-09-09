@@ -9,11 +9,30 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+
 using namespace std;
+
+
+string CodeTags(string my_line, int i){
+    string temp_code;
+    for (int j=i+2; j<my_line.length(); j++) {
+        if (my_line[j] == '>' && my_line[j+1] == '`') {
+            break;
+        } else
+            temp_code += my_line[j];
+    }
+    temp_code = "<code>&lt;" + temp_code + "&gt;</code>";
+    cout << temp_code << endl;
+    return temp_code;
+}
 
 int main(int argc, const char * argv[])
 {
-    ifstream my_file("sample.md");  // opens the input file
+    string filename;
+    cout << "Please enter a filename: ";
+    getline(cin, filename, '\n');
+    
+    ifstream my_file(filename);  // opens the input file
     
     if (!my_file.is_open())
     {  //exit if cannot open the file
@@ -29,12 +48,11 @@ int main(int argc, const char * argv[])
         cout<<"ERROR";
         exit(-1);
     }
-    string output_string;
     
-    string my_line, last_line;  // a string contains a line
+    string output_string, my_line, last_line;  // a string contains a line
     bool blockquote = false;
-    
     bool last_tag_list = false, last_tag_first_list = false;
+    
     while(!my_file.eof()) {
         
         getline (my_file, my_line, '\n');  // takes out a line
@@ -67,9 +85,8 @@ int main(int argc, const char * argv[])
                     }
                 }
             }
-             added_tag = "blockquote";
+            added_tag = "blockquote";
         }
-        
         
         if(my_line[i] == '=') {
             output_string += "<h1>" + last_line + "</h1>\n\n";
@@ -83,14 +100,12 @@ int main(int argc, const char * argv[])
                 string temp_line = "";
                 for (short j=i+1; j < my_line.length(); j++)
                     temp_line += my_line[j];
-                if ((!last_tag_list) && (!last_tag_first_list)) {
+                if ((!last_tag_list) && (!last_tag_first_list))
                     output_string += "<ul>";
-                }
                 output_string += "<li>" + temp_line + "</li>\n\n";
                 added_tag = "list";
-                if (!last_tag_list) {
+                if (!last_tag_list)
                     last_tag_first_list = true;
-                }
                 last_tag_list = true;
             }
         }
@@ -108,15 +123,14 @@ int main(int argc, const char * argv[])
                             header_num = 4;
                     } else
                         header_num = 3;
-                } else {
-                    header_num = 2;}
+                } else
+                    header_num = 2;
             } else
                 header_num = 1;
             
             string temp_line = "";
-            for (short j=(i+header_num); j < my_line.length(); j++) {
+            for (short j=(i+header_num); j < my_line.length(); j++)
                 temp_line += my_line[j];
-            }
             string header_num_string;          // string which will contain the result
             ostringstream convert;   // stream used for the conversion
             convert << header_num;
@@ -126,30 +140,44 @@ int main(int argc, const char * argv[])
         }
         
         string emphasis_line, emphasis_phrase;
+        bool inside_code = false;
         for(int i = 0; i < my_line.length(); i++)
         {   // within the length of this line, reads the segment
             temp += my_line[i];
+            
+            if (my_line[i] == '`' && !inside_code) {
+                inside_code = true;
+                string temp_before_code, temp_code, temp_after_code;
+                for (int x=0; x<i; x++)
+                    temp_before_code += my_line[x];
+                for (int j=i+2; j<my_line.length(); j++) {
+                    if (my_line[j] == '`') {
+                        for (int x=j+1; x<my_line.length(); x++) {
+                            temp_after_code += my_line[x];
+                        } break;
+                    }
+                }
+                temp_code = CodeTags(my_line,i);
+                output_string += "<p>" + temp_before_code + temp_code + temp_after_code + "</p>\n\n";
+            }
             
             if (my_line[i] == '+') {
                 string temp_line;
                 for (short j=i+1; j < my_line.length(); j++)
                     temp_line += my_line[j];
-                if ((!last_tag_list) && (!last_tag_first_list)) {
+                if ((!last_tag_list) && (!last_tag_first_list))
                     output_string += "<ul>";
-                }
                 output_string += "<li>" + temp_line + "</li>\n\n";
                 added_tag = "list";
-                if (!last_tag_list) {
+                if (!last_tag_list)
                     last_tag_first_list = true;
-                }
                 last_tag_list = true;
                 break;
             } else if (my_line[i] == '*') {
                 if (my_line[i+1] == '*') {
                     string temp_line;
-                    for (int x=0; x<i; x++) {
+                    for (int x=0; x<i; x++)
                         emphasis_line += my_line[x];
-                    }
                     bool inside_emphasis_tags = false;
                     for (int j=i+2; j<my_line.length(); j++) {
                         if (my_line[j] == '*' && !inside_emphasis_tags) {
@@ -157,12 +185,10 @@ int main(int argc, const char * argv[])
                             added_tag = "style";
                             inside_emphasis_tags = true;
                             break;
-                        } else {
+                        } else
                             temp_line += my_line[j];
-                        }
-                        if (inside_emphasis_tags) {
+                        if (inside_emphasis_tags)
                             emphasis_line += my_line[j];
-                        }
                     }
                     output_string += "<p>" + emphasis_line + "</p>\n\n";
                     break;
@@ -179,26 +205,22 @@ int main(int argc, const char * argv[])
                             break;
                         } else
                             temp_line += my_line[j];
-                        if (inside_emphasis_tags) {
+                        if (inside_emphasis_tags)
                             emphasis_line += my_line[j];
-                        }
                     }
                     if (emphasis) {
                         output_string += "<p>";
-                        for (int x=0; x<i; x++) {
+                        for (int x=0; x<i; x++)
                             output_string += my_line[x];
-                        }
                         output_string += emphasis_line + "</p>\n\n";
                     }
                     if (!emphasis) {
-                        if ((!last_tag_list) && (!last_tag_first_list)) {
+                        if ((!last_tag_list) && (!last_tag_first_list))
                             output_string += "<ul>";
-                        }
                         output_string += "<li>" + temp_line + "</li>\n\n";
                         added_tag = "list";
-                        if (!last_tag_list) {
+                        if (!last_tag_list)
                             last_tag_first_list = true;
-                        }
                         last_tag_list = true;
                     }
                     break;
@@ -206,9 +228,8 @@ int main(int argc, const char * argv[])
             } else if (my_line[i] == '[') {
                 string temp_content, temp_link, temp_title, temp_nonlink_start = "<p>", temp_nonlink_end = "</a>";
                 
-                for (int x=0; x<i; x++) {
+                for (int x=0; x<i; x++)
                     temp_nonlink_start += my_line[x];
-                }
                 temp_nonlink_start += "<a href=\"";
                 
                 short j = i+1;
@@ -216,7 +237,7 @@ int main(int argc, const char * argv[])
                     temp_content += my_line[j];
                     j++;
                 }
-
+                
                 for (int x=j;x<my_line.length();x++){
                     if (my_line[x] == '(') {
                         j = x+1;
@@ -226,9 +247,9 @@ int main(int argc, const char * argv[])
                 
                 bool link_has_title = false;
                 while (j<my_line.length() && my_line[j] != ')') {
-                    if (my_line[j] != '\"' && !link_has_title) {
+                    if (my_line[j] != '\"' && !link_has_title)
                         temp_link += my_line[j];
-                    } else if (my_line[j] == '\"' && !link_has_title) {
+                    else if (my_line[j] == '\"' && !link_has_title) {
                         link_has_title = true;
                         j++;
                     }
@@ -254,9 +275,9 @@ int main(int argc, const char * argv[])
                 }
                 temp_nonlink_end += "</p>\n\n";
                 
-                if (temp_title == "") {
+                if (temp_title == "")
                     output_string += temp_nonlink_start+ temp_link + "\">" +temp_content + temp_nonlink_end;
-                } else
+                else
                     output_string += temp_nonlink_start + temp_link + "\" title=\"" + temp_title + "\">" +temp_content + temp_nonlink_end;
                 
             }else {
@@ -265,9 +286,8 @@ int main(int argc, const char * argv[])
                     break;
                 } else if (added_tag == "blockquote") {
                     output_string += "<p>";
-                    for (int j=1; j<my_line.length(); j++) {
+                    for (int j=1; j<my_line.length(); j++)
                         output_string += my_line[j];
-                    }
                     output_string += "</p>";
                     break;
                 }
@@ -275,14 +295,12 @@ int main(int argc, const char * argv[])
         }
         
         last_line = my_line;
-        
-        
     }
+    my_file.close();
     
     cout << output_string;
     output_html << output_string;
-    
-    my_file.close();
+
     output_html.close();
     
     return 0;

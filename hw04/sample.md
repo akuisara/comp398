@@ -44,7 +44,8 @@ This is an [example link](http://example.com/).
 
 This is an [example link](http://example.com/ "With a Title").
 
-I strongly recommend against using any `<blink>` tags.
+Test code `<p>` ~~~~
 
-I wish SmartyPants used named entities like `&mdash;`
-instead of decimal-encoded entites like `&#8212;`.
+Test code `<h1>`
+
+Test code `<strong>`.
