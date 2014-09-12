@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+
+<html lang="en">
+<head><title>Davis | WeatherLink - My Weather Page</title>
+
+</head>
+<body>
+
+<table>
+<tr>
+	<table>
+	<tr>
+		<th>WheatonCollege</th>
+	</tr>
+	<tr>
+		<td><span>84&deg;</span></td>
+		<td><span>HIGH&nbsp;85&deg;F</span></td>
+		<td>at&nbsp;14:56</td>
+	</tr>
+	<tr>
+		<td></td>
+		<td><span>LOW&nbsp;54&deg;F</span></td>
+		<td>at&nbsp;06:25</td>
+	</tr>
+	<tr>
+		<td>Wind</td>
+		<td><span>WSW&nbsp;5</span></td>
+		<td>High Gust&nbsp;14&nbsp;Mph&nbsp;at&nbsp;14:28</td>
+	</tr>
+	<tr>
+		<td >Humidity</td>
+		<td><span>49%</span></td>
+		<td>Feels Like&nbsp;85&deg;F</td>
+	</tr>
+	<tr>
+		<td>Rain</td>
+		<td><span>0.00"</span></td>
+		<td>Seasonal Total&nbsp;5.56"</td>
+	</tr>
+	<tr>
+		<td>Barometer</td>
+		<td><span>30.14"</span></td>
+		<td>Falling Slowly</td>
+	</tr>
+	</table>
+</tr>
+</table>
+
+<br><br><br>
+
+<form id="time-form">
+	Search Weather at Certain Time: 
+	<input type="date" id="date" value="input"/>
+	<input type="time" id="time" value="input"/>
+</form>
+<button onclick="test_time()">Submit</button>
+<p id="display-time"></p>
+
+<script>
+function test_time() {
+	var x = document.getElementById("time").value;
+	var y = document.getElementById("date").value;
+	document.getElementById("display-time").innerHTML = y + " " + x;
+
+	confirm("Time submitted: "+y+" "+x);
+}
+</script>
+
+</body>
+</html>
