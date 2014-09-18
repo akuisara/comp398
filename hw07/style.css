@@ -97,13 +97,13 @@ code {
 #vshadow {
 	letter-spacing: 15px;
 	color: #ff0000;
-	text-shadow: 10px 0 #FF9999;
+	text-shadow: 0 10px #FF9999;
 }
 
 #hshadow{
 	letter-spacing: 5px;
 	color: #660000;
-	text-shadow: 0 10px #CC9966;
+	text-shadow: 10px 0 #CC9966;
 }
 
 #text-shadow {
