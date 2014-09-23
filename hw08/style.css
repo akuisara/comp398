@@ -2,10 +2,15 @@ html {
 	font-family: 'Neuton', serif;
 	font-size: 50px;
 	color: #44127D;
+	background-color: #00FA9A;
 }
 
 #strongtext {
 	font-weight: 800;
+}
+
+.vert-align {
+	font-size: 30px;
 }
 
 .titleintro {
@@ -14,13 +19,57 @@ html {
 	color: black;
 }
 
+.slideblock {
+	width: 800px;
+	height: 500px;
+	background-color: #E0FFFF;
+	border: 4px solid #ADD8E6;
+	border-radius: 50px;
+	padding: 10px;
+}
+
+.fancy {
+	padding: 50px;
+	display: inline-block;
+
+}
+
 .fancytext {
 	color: green;
-	font-size: 300px;
+	font-size: 1em;
 	text-transform: uppercase;
 	text-decoration: underline;
-	text-shadow: 2px 5px 0px green;
 	text-shadow: 10px 20px 15px blue;
+	padding: 30px;
+	display: inherit;
+}
+.fancytext2 {
+	color: purple;
+	font-size: 1em;
+	text-transform: capitalize;
+	text-decoration: line-through;
+	text-shadow: 10px 20px 1px purple;
+	padding: 40px;
+	padding-top: 80px;
+	display: inherit;
+}
+.fancytext3 {
+	color: aqua;
+	font-size: 1em;
+	text-transform: lowercase;
+	text-shadow: 8px 20px 4px gray;
+	padding: 30px;
+	display: inherit;
+}
+.fancytext4 {
+	color: #FF00FF;
+	font-size: 1em;
+	text-transform: uppercase;
+	text-decoration: underline;
+	text-shadow: 2px 5px 0px yellow;
+	padding: 40px;
+	padding-top: 80px;
+	display: inherit;
 }
 
 
@@ -30,37 +79,56 @@ html {
 }
 
 .transform, .transform2, .transform3, .transform4 {
-	width: 1000px;
+	width: 100%;
+	height: 100%;
 	text-align: justify;
+	font-size: .9em;
+	color: #006400;
 }
 
 .transform2 {
-	color: #370037;
 	text-transform: uppercase;
+	font-size: .8em;
 }
 
 .transform3 {
-	color: #311557;
 	text-transform: lowercase;
 }
 
 .transform4 {
-	color: #530E53;
 	text-transform: capitalize;
+}
+
+#transformimage {
+	padding: 20px 100px;
+}
+
+#vertimage {
+	padding: 20px 100px;
+	display: block;
+	float: left;
 }
 
 code {
 	font-family: 'Neuton', serif;
 	font-size: 30px;
+} 
+
+.burgerblock {
+	width: 800px;
+	height: 700px;
+	background-color: #E0FFFF;
+	border: 4px solid #ADD8E6;
+	border-radius: 50px;
+	padding: 10px;
 }
 
-
 .decoration {
-	background-color: white;
 	width: 500px;
 	text-align: center;
 	line-height: 5px;
-	margin: 0px;
+	margin-left: 50px;
+	margin-top: 20px;
 	padding: 0px;
 	border:2px solid #CC6600;
 	border-radius: 100px;
@@ -71,6 +139,13 @@ code {
 .burger {
 	margin-left: -100px;
 	margin-right: -100px;
+}
+
+#burgerpicture {
+	float: right;
+	display: block;
+	margin-right: -200px;
+	margin-top: -300px;
 }
 
 #overline {
@@ -108,13 +183,6 @@ code {
 	text-shadow: 10px 0 5px #CC9966;
 }
 
-.textcode {
-	line-height: 60px;
-	font-size: 30px;
-	float: left;
-	margin-left: -500px;
-	margin-top: -500px;
-}
 
 .direction-override {
 	line-height: 40px;
@@ -148,7 +216,12 @@ code {
 	text-align: right;
 }
 
-#box, #box2 {
+#align_just {
+	text-align: justify;
+	width: 750px;
+}
+
+.box {
 	border: 2px solid;
 	width: 800px;
 	height: 350px;
@@ -158,8 +231,12 @@ code {
 	line-height: 150px;
 }
 
-#line-height-small {
-	line-height: 22px;
+#line-height-half {
+	line-height: 50%;
+}
+
+#line-height-num {
+	line-height: 2;
 }
 
 #wider, #wider2, #wider3 {
@@ -167,14 +244,16 @@ code {
 }
 
 #indent-small {
+	/* values can be expressed as px, pt, cm, em */
 	text-indent: 20px;
 }
 
 #indent-medium {
-	text-indent: 90px;
+	text-indent: 75%;
 }
 
 #indent-large {
+	/* values can also be inherit or initial */
 	text-indent: 200px;
 }
 
@@ -192,6 +271,23 @@ code {
 	vertical-align: sub;
 }
 
+#align-top {
+	text-align: center;
+	vertical-align: top;
+}
+
+#align-middle {
+	vertical-align: middle; 
+	vertical-align: 50%;
+	vertical-align: text-bottom;
+	vertical-align: text-top;
+	vertical-align: -10px;
+}
+
+#align-bottom {
+	text-align: center;
+	vertical-align: bottom;
+}
 #ltr {
 	direction: ltr;
 }
@@ -230,4 +326,17 @@ code {
 
 #inline_please {
 	min-width: 800px;
+}
+
+#hebrew {
+  font-size: 40px;
+  direction: rtl;
+  unicode-bidi: bidi-override;
+  text-align: right;
+  margin-top: 10px;
+}
+
+#hebrewcode {
+	padding-top: 40px;
+	margin-left: 250px;
 }

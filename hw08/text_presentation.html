@@ -5,13 +5,13 @@
 <html>
 
 <head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=1024" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=1024" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
-  	<title>CSS Text</title>
-  	
-  	<link rel="stylesheet" href="style.css">
-	<link href='http://fonts.googleapis.com/css?family=Neuton:200,300,400,700,800,400italic' rel='stylesheet' type='text/css'>
+    <title>CSS Text</title>
+    
+    <link rel="stylesheet" href="style.css">
+  <link href='http://fonts.googleapis.com/css?family=Neuton:200,300,400,700,800,400italic' rel='stylesheet' type='text/css'>
 </head>
 
 
@@ -24,30 +24,65 @@
 </div>
 
 <div class="step slide" data-x="-3000" data-y="-1000" data-z="3000">
-        <div class="fancytext"><p>text</p></div>
+  <div class="slideblock">
+        <div class="fancy">
+          <p class="fancytext">text</p>
+          <p class="fancytext2">text</p>
+          <p class="fancytext3">text</p>
+          <p class="fancytext4">text</p>
+        </div>
+  </div>
 </div>
 
 
 <div class="step slide" data-x="500" data-y="500" data-rotate-x="60">
+  <div class="slideblock">
         <div class="transform">one cool tHing that you CAn do with text is cHANGE iT'S CAPITAliZATIOn style. in fact, you can <em>transform</em> IT TO BE ALL uppercase, alL LOWERCASe, or capITALIze the fiRst letTER of eaCh word. it's perfect if wanT TO MaKE SUre that you reAlLY do have all the FIRST LEtters capITALIzed. oR if you're laZY and don't like hitting the shit key any more than you need to. </div>
+  </div>
 </div>
 
 <div class="step slide" data-x="1600" data-y="500" data-rotate-x="120">
+  <div class="slideblock">
         <div class="transform2">one cool tHing that you CAn do with text is cHANGE iT'S CAPITAliZATIOn style. in fact, you can <em>transform</em> IT TO BE ALL uppercase, alL LOWERCASe, or capITALIze the fiRst letTER of eaCh word. it's perfect if wanT TO MaKE SUre that you reAlLY do have all the FIRST LEtters capITALIzed. oR if you're laZY and don't like hitting the shit key any more than you need to. </div>
+  </div>
 </div>
 
 <div class="step slide" data-x="2700" data-y="500" data-rotate-x="180">
+  <div class="slideblock">
         <div class="transform3">one cool tHing that you CAn do with text is cHANGE iT'S CAPITAliZATIOn style. in fact, you can <em>transform</em> IT TO BE ALL uppercase, alL LOWERCASe, or capITALIze the fiRst letTER of eaCh word. it's perfect if wanT TO MaKE SUre that you reAlLY do have all the FIRST LEtters capITALIzed. oR if you're laZY and don't like hitting the shit key any more than you need to. </div>
+  </div>
 </div>
 
 <div class="step slide" data-x="3800" data-y="500" data-rotate-x="240">
+  <div class="slideblock">
         <div class="transform4">one cool tHing that you CAn do with text is cHANGE iT'S CAPITAliZATIOn style. in fact, you can <em>transform</em> IT TO BE ALL uppercase, alL LOWERCASe, or capITALIze the fiRst letTER of eaCh word. it's perfect if wanT TO MaKE SUre that you reAlLY do have all the FIRST LEtters capITALIzed. oR if you're laZY and don't like hitting the shit key any more than you need to. </div>
+  </div>
+</div>
+
+<div class="step slide" data-x="4900" data-y="500" data-rotate-x="300">
+  <div class="slideblock">
+        <img src="codeimages/transform.png" width="600px" id="transformimage">
+  </div>
+</div>
+
+
+
+
+<!-- Text Direction & Unicode Bidi -->
+
+<div class="step slide" data-x="6000" data-y="3000">
+  <div class="slideblock">
+        <span>Text direction and unicode-bidi allows us to alter the direction of text to support languages that are read right to left.</span>
+        <div id="hebrew">שלום מחשב בכיתה ! מה שלומך היום ? שמו של הפרופסור שלנו הוא TOM ARMSTRONG , למקרה ששכחת . הוא מלמד בכיתה זו .
+        <br></div><div id="hebrewcode"><img src="codeimages/hebrew.png"></div>
+  </div>
 </div>
 
 
 <!-- =================== -->
 
 <div class="step slide" id="decoration" data-x="5000" data-y="5000">
+  <div class="burgerblock">
   <div class="decoration">
     <p class="burger" id="overline">Overline</p>
     <p class="burger" id="vshadow">Vertical Shadow</p>
@@ -56,66 +91,139 @@
     <p class="burger" id="hshadow">Horizontal Shadow</p>
     <p class="burger" id="underline">Underline</p>
   </div>
-  <div class="textcode">
-    <p><br/>text-decoration: overline;
-      <br/>text-shadow: 0 10px 0 #FF9999;
-      <br/>text-decoration: line-through;
-      <br/>
-      <br/>text-shadow: 10px 0 10px #CC9966;
-      <br/>text-decoration: underline;</p>
+  <div id="burgerpicture"><img src="codeimages/cheeseburger.png"></div>
   </div>
-  <div class="direction-override">
-    <p><br/>direction: rtl;
-      <br/>unicode-bidi: bidi-override;</p>
-  </div>
+
+  
+
 </div>
 
-<!-- =================== -->
+<!-- ================== -->
 
 
-<div class="step slide" id="box" data-x="6000" data-y="7000" data-rotate-y="95">
-        <p id="align_left">Text Align</p>
-        <p id="align_center">Text Align</p>
-        <p id="align_right">Text Align</p>
+  <div class="step slide" data-x="6000" data-y="7000" data-rotate-y="95">
+        <div class="slideblock">
+          <p id="align_left">This is aligned on the left.</p>
+          <p id="align_center">This is aligned in the center.</p>
+          <p id="align_right">This is aligned on the right.</p>
+          <p id="align_just">This is justified, so each line is stretched to have equal width.</p>
+        </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="8000" data-rotate-y="-45">
+  <div class="slideblock" id="align_center">
+        <img src="codeimages/align.png" width="500px" id="transformimage">
+  </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="9000" data-rotate-y="45">
+        <div class="slideblock">
+          <p id="line-height-large">These lines have a height of 150px. Line height can be defined in the usual measures such as px, pt, cm, etc.</p>
+        </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="10000" data-rotate-y"-45">
+        <div class="slideblock">
+          <p id="line-height-half">These lines are defined as 50% of the font size. Other value options include inherit, initial, and normal. </p>
+          <p id="line-height-num">These line height are defined as a number (2), where the number is multiplied by the font size.</p>
+        </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="11000" data-rotate-y="45">
+    <div class="slideblock" id="align_center">
+          <img src="codeimages/height.png" width="600px" id="transformimage">
+    </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="12000" data-rotate-y="-45">
+        <div class="slideblock">
+          <p id="indent-medium">This line is indented 75% in respect to its parent element.</p>
+          <p id="indent-small">This line is indented 20px from the left.</p>
+          <p id="indent-large">This line is indented 200px from the left. </p>
+        </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="13000" data-rotate-y="45">
+  <div class="slideblock" id="align_center">
+        <img src="codeimages/indent.png" width="600px" id="transformimage">
+  </div>
+  </div>
+
+  <div class="step slide" data-x="6000" data-y="14000" data-rotate-y="-45">
+        <div class="slideblock">
+          <p class="vert-align">Vertical align allows you to define super<span id="supers">scripts</span> and sub<span id="subs">scripts</span>.</p>
+           <p class="vert-align" id="align-top">This is using the 'top' value. <img src="codeimages/tom.jpg" width="150px"></p>
+           <p class="vert-align" id="align-bottom"><img src="codeimages/tom.jpg" width="150px"> This is using the 'bottom' value. </p>
+        </div>
+  </div>
+
+<div class="step slide" data-x="6000" data-y="15000" data-rotate-y="45">
+  <div class="slideblock" id="align_center">
+        <img src="codeimages/vertical.png" width="300px" id="transformimage">
+  </div>
 </div>
-
-<div class="step slide" id="wider" data-x="6000" data-y="8000" data-rotate-y="33">
-          <p id="line-height-large">Sometimes, the lines of text get into arguments and refuse to be near each other...</p>
-  </div>
-
-<div class="step slide" data-x="6000" data-y="9000" data-rotate-y="270">
-          <p id="line-height-small">And, in cold weather, text tends to huddle together to stay warm...</p>
-  </div>
-
-  <div class="step slide" id="left-border" data-x="6000" data-y="10000" data-rotate-y="-3.14159">
-          <p id="indent-medium">Indenting. Indenting </p>
-          <p id="indent-small">Indenting. Indenting </p>
-          <p id="indent-large">Indenting. Indenting </p>
-  </div>
-
-  <div class="step slide" id="wider2" data-x="10000" data-y="11000" data-rotate-x="927">
-          <p>Z<span id="supers">E</span>V<span id="subs">I</span> <span id="supers">D</span>O <span id="subs">T</span>H<span id="supers">E</span> W<span id="subs">A</span>V<span id="supers">E</span>!
-          </p>
-  </div>
-
 
 <div class="step slide" data-x="-4000" data-y="-5000">
-        <p><span id="close_space">TEX</span><span id="far_space">TS</span><span id="close_space">PACIN</span><span id="far_space">GIS</span><span id="close_space">IMPORTANT</span></p>
+  <div class="slideblock">
+        <p><span id="close_space">LETTE</span><span id="far_space">RS</span><span id="close_space">PACIN</span><span id="far_space">GIS</span><span id="close_space">IMPORTANT</span></p>
+        <img src="codeimages/nolet.jpg" />
+        <img src="codeimages/farlet.jpg" />
+</div>
 </div>
 
-<div class="step slide" data-x="-4000" data-y="-5500" data-rotate="180">
+<div class="step slide" data-x="-4000" data-y="-5600" data-rotate="180">
+  <div class="slideblock">
         <p id="inline_please"><span id="close_word">AS IS</span><span id="far_word">WORD SPACING</span></p>
+        <img src="codeimages/noword.jpg" />
+        <img src="codeimages/farword.jpg" />
+</div>
 </div>
 
 
 <div class="step slide" data-x="-4400" data-y="-8000" data-rotate="180">
-        <p id="moved_over"><span id="no_wspace">And when there is no wrapping the whitespace, the text will just keep going and going and going and going and going and going and going and going and going and going and going<br/>until a line break is<br/>placed in.</span></p>
-        <p id="moved_over"><span id="pl_wspace">  This differs from all other white space manipulators, like pre-line whitespace.  The others will all cut off the line at the browser's discretion, or when there is a line break.  Except for pre.</span></p>
-
-
-
-
+  <div class="slideblock">
+        <p id="moved_over"><span id="no_wspace">And when there is no wrapping the whitespace, the text will just keep going and going and going and going and going and going and going and going and going and going and going</span><br/></p>
+        <img src="codeimages/no_ws.jpg" align="center" />
 </div>
+</div>
+<div class="step slide" data-x="-5000" data-y="-9000" data-rotate="70">
+  <div class="slideblock">
+        <p><span id="pl_wspace">  This differs from all other white space manipulators, like pre-line whitespace.  The others will all cut off the line at the browser's discretion, or when there is a line break.  Except for pre.</span></p>
+        <img src="codeimages/pl_ws.jpg" align="center" />
+</div>
+</div>
+<div class="step slide" data-x="-6000" data-y="-9000" data-rotate="120">
+  <div class="slideblock">
+        <p><span id="p_wspace">The pre whitespace value will have the text only wrap on <br/> line breaks</span></p>
+        <img src="codeimages/p_ws.jpg" align="center" />
+</div>
+</div>
+<div class="step slide" data-x="-5000" data-y="-10500" data-rotate="240">
+  <div class="slideblock">
+        <p><span id="pw_wspace">When using pre-wrap whitespace, whitespace is preserved by the browser.  The text will wrap when necessary, and <br/>on line breaks.</span></p>
+        <img src="codeimages/pw_ws.jpg" align="center" />
+</div>
+</div>
+<div class="step slide" data-x="-4000" data-y="-12000" data-rotate="360">
+  <div class="slideblock">
+        <p><span id="n_wspace">When using normal whitespace, sequences of whitespace will collapse into a single whitespace.  The text will wrap when necessary. You don't even have to declare this one, it's the default!</span></p>
+        <img src="codeimages/norm_ws.jpg" align="center" />
+</div>
+</div>
+<div class="step slide" data-x="-3000" data-y="-13500" data-rotate="480">
+  <div class="slideblock">
+        <p><span id="i_wspace">The text can also inherit whitespace from the parent. Right now it's inheriting normal whitespace as there is no defined value in the parent.</span></p>
+        <img src="codeimages/i_ws.jpg" align="center" />
+</div>
+</div>
+
+
+
+
+
+
+
+
 <script src="js/impress.js"></script>
 <script>impress().init();</script>
 </body>
