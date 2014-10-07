@@ -51,6 +51,17 @@ LinkedList.prototype.Populate = function() {
 	});
 };
 
+LinkedList.prototype.Search = function() {
+	var value = prompt("Please enter a state name or an abbreviation: (For example: Massachusetts or MA)");
+	temp = this.head;
+	while(temp !== null) {
+		if(temp.state == value || temp.abbreviation == value){
+			console.log("Find the record: "+temp.state+" "+temp.abbreviation);
+			break;
+		}
+		temp = temp.next;
+	}
+};
 
 LinkedList.prototype.DisplayContent = function() {
 	var fs = require('fs');
@@ -62,6 +73,8 @@ function Driver(){
 	var list = new LinkedList();
 
 	list.Populate();
+
+	list.Search();
 
 	list.DisplayContent();
 
