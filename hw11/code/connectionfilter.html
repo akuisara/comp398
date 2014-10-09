@@ -1,0 +1,565 @@
+<DOCTYPE! html>
+<html>
+<head>
+	<title>Wheaton Connections</title>
+    
+	<link rel="stylesheet" href="style/uikit.almost-flat.min.css"/>
+	<link rel="stylesheet" href="style/style.css"/>
+    <script src="style/jquery-1.11.1.min.js"></script>
+    <script src="style/uikit.min.js"></script>
+    <script src="style/ourjavascript.js"></script>
+</head>
+
+<body style="background-color: #381252">
+
+<div id="mainbody" class="uk-grid">
+    
+    <div class="uk-width-1-4">
+        <a href="index.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+            <h3>Home</h3>
+        </div>
+        </a>
+    </div>
+
+    <div class="uk-width-1-4">
+        <a href="connectionfilter.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+            <h3>Connection Filter</h3>
+        </div>
+        </a>
+    </div>
+    
+    <div class="uk-width-1-4">
+        <a href="connectionvisualize.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+            <h3>Connection Visualizer</h3>
+        </div>
+        </a>
+    </div>
+
+    <div class="uk-width-1-4">
+        <a href="studentinitiated.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+            <h3>Student-Initiated Connections</h3>
+        </div>
+        </a>
+    </div> 
+       
+</div>
+
+
+<!-- start of two column grid layout -->
+<div id="mainbody" class="uk-grid">
+
+    <!-- form panels with filtering options -->
+	<div class="uk-width-1-3">
+        <div class="uk-panel uk-panel-box">
+            <form class="uk-form">
+                <fieldset>
+                    <label><input type="checkbox"> 2 Course Connections &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label><input type="checkbox"> 3 Course Connections</label>
+                </fieldset>
+            </form>
+        </div>
+		<div class="uk-panel uk-panel-box">
+			<ul class="uk-tab" data-uk-tab="{connect:'#tabcontent'}">
+    			<li class="uk-active"><a href="#">Division</a></li>
+    			<li class><a href="#">Department</a></li>
+    			<li data-uk-tooltip="{pos:'top'}" title="All connections with one or more courses being offered in the selected semester will appear." class><a href="#">Semester</a></li>
+                <li class data-uk-tooltip title=""><a href="#">Courses</a></li>
+			</ul>
+			<ul id="tabcontent" class="uk-switcher uk-margin">
+    			<li class="uk-active">
+    				<form class="uk-form">
+    					<fieldset>
+        					<div class="uk-form-row"><label><input type="checkbox"> Natural Sciences</label></div>
+        					<div class="uk-form-row"><label><input type="checkbox"> Social Sciences</label></div>
+        					<div class="uk-form-row"><label><input type="checkbox"> Humanities</label></div>
+    					</fieldset>
+					</form>
+    			</li>
+    			<li class>
+                    <form class="uk-form">
+                        <fieldset>
+                            <div class="uk-form-row"><label><input type="checkbox"> Anthropology</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Art &amp; Art History</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Biology</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Chemistry</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Classics</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Economics</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Education</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> English</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> French Studies</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> German</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Hispanic and Italian Studies</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> History</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Mathematics and Computer Science</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Music</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Philosophy</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Physics and Astronomy</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Political Science</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Psychology</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Religion</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Russian and Russian Studies</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Sociology</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Theatre and Dance Studies</label></div>
+                        </fieldset>
+                    </form>
+                </li>
+    			<li class="">
+                    
+                    <form class="uk-form">
+                        <fieldset>
+                            <div class="uk-form-row"><label><input type="checkbox"> Spring 2014</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Fall 2015</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox"> Fall 2016</label></div>
+                        </fieldset>
+                    </form>
+                    <span style="text-align: right;"></span>
+                </li>
+                <li class="">Course</li>
+			</ul>
+		</div>
+	</div>
+
+    <!-- filtered results column with Letter > Connections > Connection Courses panels -->
+    <div class="uk-width-2-3">
+        <div class="uk-panel uk-panel-box">
+            <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-menu'}">
+                <li><a href="#A">A</a></li>
+                <li><a href="#B">B</a></li>
+                <li><a href="#C">C</a></li>
+                <li><a href="#D">D</a></li>
+                <li><a href="#E">E</a></li>
+                <li><a href="#F">F</a></li>
+                <li><a href="#G">G</a></li>
+                <li><a href="#H">H</a></li>
+                <li><a href="#I">I</a></li>
+                <li><a href="#J">J</a></li>
+                <li><a href="#L">L</a></li>
+                <li><a href="#M">M</a></li>
+                <li><a href="#N">N</a></li>
+                <li><a href="#P">P</a></li>
+                <li><a href="#Q">Q</a></li>
+                <li><a href="#R">R</a></li>
+                <li><a href="#S">S</a></li>
+                <li><a href="#T">T</a></li>
+                <li><a href="#U">U</a></li>
+                <li><a href="#V">V</a></li>
+                <li><a href="#W">W</a></li>
+            </ul>
+        </div>
+
+        <div class="uk-panel uk-panel-box">
+            <ul id="connection-menu" class="uk-subnav uk-subnav-pill uk-switcher" data-uk-switcher="{connect:'#connection-info'}">
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-A'}">
+                        <li><a href="#" name="A">African Diaspora in New World</a></li>
+                        <li><a href="#" name="A">African Worlds</a></li>
+                        <li><a href="#" name="A">All roads lead to Rome</a></li>
+                        <li><a href="#" name="A">Analyzing and Solving Problems Through Writing</a></li>
+                        <li><a href="#" name="A">Ancient Landscapes and Ancient Skies</a></li>
+                        <li><a href="#" name="A">Animal Power in Religion, Art and Science</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-B'}">
+                        <li><a href="#" name="B">Biopharma</a></li>
+                        <li><a href="#" name="B">Black Aesthetics</a></li>
+                        <li><a href="#" name="B">Body and Mind</a></li>
+                        <li><a href="#" name="B">Body, Form and Motion</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-C'}">
+                        <li><a href="#" name="C">Cinema/Kino: Film in Russia</a></li>
+                        <li><a href="#" name="C">Colonial Encounters</a></li>
+                        <li><a href="#" name="C">Communicating Information</a></li>
+                        <li><a href="#" name="C">Communication through Art and Mathematics</a></li>
+                        <li><a href="#" name="C">Computer Architecture</a></li>
+                        <li><a href="#" name="C">Computing and Texts</a></li>
+                        <li><a href="#" name="C">Cultural Flows in South Asia</a></li>
+                        <li><a href="#" name="C">Culture, Society and Politics in Early Modern France</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="D">Dividing East and West</a></li>
+                        <li><a href="#" name="D">Drama: Page and Stage</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="E">Early American Studies</a></li>
+                        <li><a href="#" name="E">Ecology: A Statistical Approach</a></li>
+                        <li><a href="#" name="E">Ecology and Public Policy</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="F">Family, Sex and Religion</a></li>
+                        <li><a href="#" name="F">Film and Society</a></li>
+                        <li><a href="#" name="F">Film: Theory and Practice</a></li>
+                        <li><a href="#" name="F">Food</a></li>
+                        <li><a href="#" name="F">From Manet to Colbert: "Negotiating New Media"</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="G">Gender</a></li>
+                        <li><a href="#" name="G">Gender Inequality: Sociological and Literary Perspectives</a></li>
+                        <li><a href="#" name="G">Genes in Context</a></li>
+                        <li><a href="#" name="G">German Language in European History</a></li>
+                        <li><a href="#" name="G">German Politics and Culture in the European Context</a></li>
+                        <li><a href="#" name="G">Germanies: History vs Culture</a></li>
+                        <li><a href="#" name="G">Global Music</a></li>
+                        <li><a href="#" name="G">Graphic Design and Web Programming</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="H">History and Politics of United States Foreign Policy</a></li>
+                        <li><a href="#" name="H">Human Biology and Movement</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="I">Ideas of Antiquity</a></li>
+                        <li><a href="#" name="I">Individual and Society</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="J">Jews in Modern Europe</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="L">Language and Literacy</a></li>
+                        <li><a href="#" name="L">Latino Culture</a></li>
+                        <li><a href="#" name="L">Learning to Learn in Math and Science</a></li>
+                        <li><a href="#" name="L">Living Architecture</a></li>
+                        <li><a href="#" name="L">Logic and Digital Circuits</a></li>
+                        <li><a href="#" name="L">Logic and Programming</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="M">Madness in Medicine and Society</a></li>
+                        <li><a href="#" name="M">Mathematical Tools for Chemistry</a></li>
+                        <li><a href="#" name="M">Mathematics of Chemical Analysis</a></li>
+                        <li><a href="#" name="M">Medieval Culture</a></li>
+                        <li><a href="#" name="M">Microbes and Health</a></li>
+                        <li><a href="#" name="M">Modern Latin America</a></li>
+                        <li><a href="#" name="M">Molecules to Masterpieces</a></li>
+                        <li><a href="#" name="M">Music: The Medium and the Message</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="N">Negotiating New Media</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="P">Patronage and Power in Early Modern Europe</a></li>
+                        <li><a href="#" name="P">Performing into Theory</a></li>
+                        <li><a href="#" name="P">Philosophy and Politics of Law</a></li>
+                        <li><a href="#" name="P">Political Theories, Political Realities: Ideas and Practices in Past Politics</a></li>
+                        <li><a href="#" name="P">Politics and Global Change</a></li>
+                        <li><a href="#" name="P">Psychoactive Sacramentals</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="Q">Quantum Theories: Contemporary American Fiction, Modern Physics and the Universe</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="R">Race as a Social Construct</a></li>
+                        <li><a href="#" name="R">Race, Power and Representation</a></li>
+                        <li><a href="#" name="R">Reading Children</a></li>
+                        <li><a href="#" name="R">Revolution!</a></li>
+                        <li><a href="#" name="R">Russia: Literature, History, Politics</a></li>
+                        <li><a href="#" name="R">Russian History and Culture</a></li>
+                        <li><a href="#" name="R">Russian History and Politics</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="S">Schooling in Modern Society</a></li>
+                        <li><a href="#" name="S">Science FACTion</a></li>
+                        <li><a href="#" name="S">Sexuality</a></li>
+                        <li><a href="#" name="S">Shoes, Shirtwaists and Sex: Women and Work Around the World</a></li>
+                        <li><a href="#" name="S">Structure and Function of Drugs</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="T">The Art of the Print</a></li>
+                        <li><a href="#" name="T">The Calculus of Microeconomics</a></li>
+                        <li><a href="#" name="T">The Environment</a></li>
+                        <li><a href="#" name="T">The Greeks on Stage</a></li>
+                        <li><a href="#" name="T">The Historical Context of Contemporary American Culture</a></li>
+                        <li><a href="#" name="T">The Math in Art and the Art of Math</a></li>
+                        <li><a href="#" name="T">The Meaning of Space in the Early Modern World</a></li>
+                        <li><a href="#" name="T">The Shape of the Universe</a></li>
+                        <li><a href="#" name="T">Theories of Imperialism</a></li>
+                        <li><a href="#" name="T">Thinking About Seeing</a></li>
+                        <li><a href="#" name="T">Top Secret</a></li>
+                        <li><a href="#" name="T">Tough Choices: The Economics and Ethics of Health Care Decision Making</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="U">Understanding Children: Psychology and Literature</a></li>
+                        <li><a href="#" name="U">Understanding Media, 'Old' and 'New'</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="V">Visual Literacy</a></li>
+                        <li><a href="#" name="V">Visualizing Information</a></li>
+                        <li><a href="#" name="V">Voting Theory, Math and Congress</a></li>
+                    </ul>
+                </li>
+
+                <li>
+                    <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-info'}">
+                        <li><a href="#" name="W">We Built this City on Rock</a></li>
+                        <li><a href="#" name="W">Women in the United States</a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </div>
+
+        <div class="uk-panel uk-panel-box">
+            <ul id="connection-info" class="uk-switcher">
+                <ul id="connection-A" class="uk-switcher">
+                    <li>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_23007/">Connection 23007: African Diaspora in New World (Choose 2 or 3)</a></h3>
+                            <dl class="uk-description-list-line">
+                                <dt>Creative Arts</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/musc_272/">MUSC 272</a> African American Originals I: Spirituals, Blues and All That Jazz</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/musc_273/">MUSC 273</a> African American Originals II: Rhythm and Blues, Rock and Contemporary Jazz</dd>
+                                <dt>History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_209/">HIST 209</a> African American History to 1877</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_210/">HIST 210</a> African American History: 1877 to the Present</dd>
+                                <dt>Social Sciences</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/soc_230/">SOC 230</a> Race and Ethnicity</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/wgs_315/">WGS 315</a> Black Feminist Theory</dd>
+                            </dl>
+                    </li>
+                    <li>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_23007/">Connection 23001: African Worlds (Choose 2 or 3)</a></h3>
+                            <dl class="uk-description-list-line">
+                                <dt>Creative Arts</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/musc_212/">MUSC 212</a> World Music: Africa and the Americas</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/musc_222/">MUSC 222</a> West African Mande Dance and Music</dd>
+
+                                <dt>History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_143/">HIST 143</a> Africans on Africa: A Survey</dd>
+
+                                <dt>Humanities</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/arth_212/">ARTH 212</a> African Visual Cultures</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/arth_312/">ARTH 312</a> Resistance, Memory and Hope in African Arts</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/eng_245/">ENG 245</a> African Literature</dd>
+
+                                <dt>Social Sciences</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/anth_225/">ANTH 225</a> Peoples and Cultures of Africa</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/anth_225/">ANTH 255</a>, <a href="http://wheatoncollege.edu/catalog/wgs_255/">WGS 255</a> Peoples and Cultures of Africa</dd>
+                                <dd><a href="http://wheatoncollege.edu/catalog/pols_203/">POLS 203</a> African Politics</dd>
+                            </dl>
+                    </li>
+                    <li>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome</a></h3>
+                            <dl class="uk-description-list-horizontal">
+                                <dt>Art History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
+                                <dt>History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
+                            </dl>
+                    </li>
+                    <li>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome</a></h3>
+                            <dl class="uk-description-list-horizontal">
+                                <dt>Art History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
+                                <dt>History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
+                            </dl>
+                    </li>
+                    <li>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome</a></h3>
+                            <dl class="uk-description-list-horizontal">
+                                <dt>Art History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
+                                <dt>History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
+                            </dl>
+                    </li>
+                    <li>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome...</a></h3>
+                            <dl class="uk-description-list-horizontal">
+                                <dt>Art History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
+                                <dt>History</dt>
+                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
+                            </dl>
+                    </li>
+                </ul>
+                <ul id="connection-B" class="uk-switcher">
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma1</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma2</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma3</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma4</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                </ul>
+                <ul id="connection-C" class="uk-switcher">
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC1</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC2</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC3</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC4</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC5</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC6</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC7</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC8</a></h3>
+                        <dl class="uk-description-list-horizontal">
+                            <dt>Biology</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dd> </dd>
+                            <dt>Economics</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                        </dl>
+                    </li>
+                </ul>
+            </ul>
+    
+    </div>
+    </div>
+</div>
+
+</body>
+</html>

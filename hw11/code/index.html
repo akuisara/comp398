@@ -1,0 +1,106 @@
+<DOCTYPE! html>
+<html>
+<head>
+    <title>Wheaton Connections</title>
+    
+    <link rel="stylesheet" href="style/uikit.almost-flat.min.css"/>
+    <link rel="stylesheet" href="style/style.css"/>
+    <script src="style/jquery-1.11.1.min.js"></script>
+    <script src="style/uikit.min.js"></script>
+    <script src="style/ourjavascript.js"></script>
+</head>
+
+<body style="background-color: #381252">
+
+<div id="mainbody" class="uk-grid">
+
+    <div class="uk-width-1-1">
+        <!-- title grid block that includes our header panel -->
+        <div class="uk-panel uk-panel-box uk-panel-box-primary">
+            <div class="uk-panel-title uk-text-large"><h1 style="color: #381252;">Wheaton Connections</h1></div>
+            <div style="color: #381252;"><p>This website allows you to browse the pre-approved connections available at Wheaton College (MA). On the Filter Connections Page, they're sorted by number of courses within the connection (always either two or three), the divisions of the courses, and the major and minor departments of the courses. In addition, one specific course can be selected, and the connections that include that course will be displayed. (Only courses that are part of a connection are listed.) On the Connections Visualizer, you can see an interactive Force-Directed Graph of all offered Connections. Finally, the Student-Initiated Connections form is offered, which can then be submitted to the Registrar's.</p>
+
+             <!-- modal that gives site attributions -->
+            <p style="text-align: right; padding-right: 10px"><a href="#credits" data-uk-modal>Credit where credit is due.</a></p>
+            <div id="credits" class="uk-modal">
+                <div class="uk-modal-dialog">
+                    This website was created by <a href="https://github.com/akuisara">Sara Zhang</a> and <a href="https://github.com/lithiah">Lithia Helmreich</a> of Wheaton College for a computer science course homework assignment (<a href="https://github.com/WheatonWHALE/comp398/blob/master/hw/hw11.md">#11</a> to be exact). All connection information was taken from the Wheaton College website connections listings, found <a href="http://wheatoncollege.edu/academics/the-wheaton-curriculum/connections/connections-list/">here</a>. The <a href="http://getuikit.com/index.html">UIKit framework</a> was used to make it pretty looking (and functional-ish).
+                </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="mainbody" class="uk-grid">
+
+    <div class="uk-width-1-3">
+        <a href="connectionfilter.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center;">
+            <h2>Connection Filter</h2>
+            Filter by Division, Department, Semester, etc.
+        </div>
+        </a>
+    </div>
+    
+    <div class="uk-width-1-3">
+        <a href="connectionvisualize.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center;">
+            <h2>Connection Visualizer</h2>
+            See a graphical representation of all connections
+        </div>
+        </a>
+    </div>
+
+    <div class="uk-width-1-3">
+        <a href="studentinitiated.html">
+        <div class="uk-panel uk-panel-box" style="text-align: center;">
+            <h2>Student-Initiated Connections</h2>
+            Submit your own connection form to Registar's
+        </div>
+        </a>
+    </div>
+    
+</div>
+
+<!-- modal that describes UIKit structure -->
+    <p style="text-align: right; padding-right: 10px; padding-left: 10px; position:fixed; bottom:0;"><a href="#uikitdeets" data-uk-modal>UIKit Structure</a></p>
+        <div id="uikitdeets" class="uk-modal">
+            <div class="uk-modal-dialog">
+            <p>
+                <a href="http://getuikit.com/index.html">UIKit</a> allows you to format your website according to a <a href="http://getuikit.com/docs/grid.html">basic grid</a>. You section off blocks of specific widths (say, three blocks each 1/3 of your screen width, or one block that fills up 100% of your screen width) and then fill in those grid cells with content. 
+
+                <br><br>
+                
+                What we chose to do here with our grid was to follow a basic two-column layout, with a single header at the top. Each grid cell is filled in with a UIKit component called a <a href="http://getuikit.com/docs/panel.html">panel</a>, which essentially formats your cell to look like those nice boxes we've got back there.
+
+                <br><br>
+                
+                We used a lot of other cool UIKit components, not just stylistic ones, but also javascript components that interface with our style choices. For example, UIKit <a href="http://getuikit.com/docs/tab.html">tabs</a> is the style/navigation component you see that divides the filtering categories for which connections you want (Divison, Department, Semester, and Course). This styling component then interfaces with a UIKit javascript component called <a href="http://getuikit.com/docs/switcher.html">switcher</a> which allows us to display different content blocks depending on which tab we've selected. This lets us split up our form into sections that you only see one at a time, and is easier for the user to digest than one long form.
+
+                <br><br>
+
+                The same technique is used with our filtered results column on the left. UIKit allows us to link each letter of the alphabet with a separte list of the connections that start with that that letter. Each of those connections in turn is linked to the complete description panel that renders all the courses available for a specific connection. Voila, and only the selected category is displayed.
+
+                <br><br>
+
+                The nifty think about the UIKit framework is that although our website clearly utilizes tons of css styling and javascript, <em>we</em> didn't have to write much CSS or javascript at all. It's all managed for us through UIKit with the use of classes. Anytime we want to apply a UIKit component, whether it be CSS styling or javascript animations, we simply apply the correct UIKit class to our div (or span or paragraph or whatever) and that's it! 
+
+                <br><br>
+
+                To learn more about UIKit and how to utilize it, we highly recommend checking out their <a href="http://getuikit.com/index.html">website</a>. They have detailed descriptions and examples (both the code and the visual) that we found very easy to follow along. 
+
+                <br><br>
+
+                Below is a skeleton outline that demonstrates the structure of our webpage:
+
+                <br><br>
+
+                <img src="skeleton.png"/>
+            </p>
+            </div>
+
+        </div>
+
+</body>
+</html>
