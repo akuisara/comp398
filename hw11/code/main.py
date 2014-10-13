@@ -12,7 +12,7 @@ def main():
     doc.prettify().encode('utf-8')
 
     connectionNames = re.compile(r'CONX [0-9][0-9][0-9][0-9][0-9]')
-    descriptions = re.compile(r'[A-Z][a-z][a-z][a-z]?[a-z]? course connection')
+    descriptions = re.compile(r'[A-Z][a-z][a-z][a-z]?[a-z]? |(or three) course connection')
     
     connections = {}
     nameList = []
@@ -24,16 +24,22 @@ def main():
 
         content = arow.find('td').getText().encode('utf-8').strip()
         if connectionNames.match(content):
-            nameList.append(content)
+            nameList.append(str(content).replace('\'','`'))
         if descriptions.match(content):
-            descriptionList.append(content)
-
-    for m in nameList:
-        for n in descriptionList:
-            connections.update({m:n})
+            descriptionList.append(str(content).replace('\'','`'))
 
     with open('connections.json', 'w') as outputFile:
-        outputFile.write(str(connections).replace('\'', '"'))
+        outputFile.write("{\"connections\": [\n")
+        for i in xrange(len(nameList)):
+            oneConnection = {}
+            oneConnection.update({"CourseName":nameList[i]})
+            print len(descriptionList)
+            print len(nameList)
+            oneConnection.update({"CourseDescription":descriptionList[i]})
+
+            outputFile.write('\t'+str(oneConnection).replace('\'', '"')+'\n')
+                
+        outputFile.write("]}")
     
 if __name__ == '__main__':
     main()
