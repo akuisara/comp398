@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Prob3</title>
+	<link rel="stylesheet" type="text/css" href="style.css"/>
+
+</head>
+
+<body>
+	<div id="cal">
+	<h1>Lazy Caterer's Sequence Generator</h1>
+	<p class="center">Enter a number:<input type="text" id="num" >
+	<button onclick="myFunction()">Get Central polygonal Number</button></p><hr>
+
+	<table class="center" id="demo">
+	</table>
+	<br>
+	</div>
+
+	<script>
+	function myFunction() {
+		var n = document.getElementById("num").value;
+
+		if (!isNaN(n) && n == Math.round(n)) {
+			n = Number(n);
+			var display = "<tr><th>N&nbsp;&nbsp;&nbsp;</th><th>Central polygonal Number</th></tr>";
+			for (var i = 0; i <= n; i++) {
+				var output = (i*(i + 1))/2 + 1;
+				display += "<tr><td>"+String(i)+"</td><td>"+String(output)+"</td></tr>";
+			};
+			
+			document.getElementById("demo").innerHTML = display;
+		} else {
+			document.getElementById("demo").innerHTML = "Please enter an integer";
+		}
+
+		var demotable = document.getElementById("demo");
+		console.log(demotable);
+
+		var tablerow = document.getElementsByTagName("tr");
+		console.log(tablerow);
+
+		for(var i = 0; i < tablerow.length;i++){
+			if(i % 2 == 1) {
+				tablerow[i].style.background = "#ffffff";
+			}
+		}
+	}
+	</script>
+</body>
+
+</html>
