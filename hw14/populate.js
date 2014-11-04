@@ -28,12 +28,12 @@ var uri = 'mongodb://localhost:27017/hw14';
 MongoClient.connect(uri, function(err, db) {
     if(err) throw err;
 
-    var programmingLang = db.collection('programmingLang');
+    var newCollection = db.collection('hw14');
 
-    programmingLang.insert(obj.Collection, function(err, result) {    
+    newCollection.insert(obj.Collection, function(err, result) {    
         if(err) throw err;
 
-        programmingLang.find({ }).toArray(function (err, docs) {
+        newCollection.find({ }).toArray(function (err, docs) {
             if(err) throw err;
 
             docs.forEach(function (doc) {
