@@ -13,8 +13,8 @@ var collectionList = [];
 var lenOne = programmingLang.length;
 var lenTwo = wheatonLang.length;
 for (var i = 0; i < 2500; i++) {
-    var indexOne = Math.floor((Math.random() * Number(lenOne))+ 1);
-    var indexTwo = Math.floor((Math.random() * Number(lenTwo))+ 1);
+    var indexOne = Math.floor((Math.random() * Number(lenOne)));
+    var indexTwo = Math.floor((Math.random() * Number(lenTwo)));
     collectionList.push("{\"index\": \""+i+"\", \"programming\": \""+programmingLang[indexOne]+"\", \"foreign\": \""+wheatonLang[indexTwo]+"\"}");
 };
 collectionList.push("{\"index\": \""+2500+"\", \"programming\":\""+programmingLang[0]+"\", \"foreign\":\""+wheatonLang[0]+"\"}");
