@@ -1,23 +1,26 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Wheaton Connections</title>
     
-    <link rel="stylesheet" href="style/uikit.almost-flat.min.css"/>
-    <link rel="stylesheet" href="style/style.css"/>
-    <script src="style/jquery-1.11.1.min.js"></script>
-    <script src="style/uikit.min.js"></script>
-    <script src="style/ourjavascript.js"></script>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/uikit.almost-flat.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+
+    <script src="javascript/jquery-1.11.1.min.js"></script>
+    <script src="javascript/uikit.min.js"></script>
 </head>
 
-<body style="background-color: #381252">
+<body>
 
 
 <div id="mainbody" class="uk-grid">
     
     <div class="uk-width-1-4">
         <a href="index.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Home</h3>
         </div>
         </a>
@@ -25,7 +28,7 @@
 
     <div class="uk-width-1-4">
         <a href="connectionfilter.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Connection Filter</h3>
         </div>
         </a>
@@ -33,7 +36,7 @@
     
     <div class="uk-width-1-4">
         <a href="connectionvisualize.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Connection Visualizer</h3>
         </div>
         </a>
@@ -41,7 +44,7 @@
 
     <div class="uk-width-1-4">
         <a href="studentinitiated.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Student-Initiated Connections</h3>
         </div>
         </a>
@@ -49,11 +52,24 @@
    
 </div>
 
-<div>
-    <div class="content">You can create your own major! Check out the <a href="http://wheatoncollege.edu/academics/the-wheaton-curriculum/connections/guidelines-studentinitiated-connections/">Guidelines</a> OR <a href="independentconnection.pdf">Download the form</a></div>
-
-    <div class="pdf-viwer">
-    <iframe src="independentconnection.pdf" id='pdf' style="border: 2px solid black;"></iframe></div>
+<div id="content">
+    You can create your own major! Check out the <a href="http://wheatoncollege.edu/academics/the-wheaton-curriculum/connections/guidelines-studentinitiated-connections/">Guidelines</a> OR <a href="images/independentconnection.pdf">Download the form</a>
 </div>
+
+<div id="pdf-viwer">
+    <iframe src="images/independentconnection.pdf" id='pdf' style="border: 2px solid black;"></iframe>
+</div>
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56306705-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

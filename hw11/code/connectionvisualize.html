@@ -1,23 +1,41 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Wheaton Connections</title>
+
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/uikit.almost-flat.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
     
-    <link rel="stylesheet" href="style/uikit.almost-flat.min.css"/>
-    <link rel="stylesheet" href="style/style.css"/>
-    <script src="style/jquery-1.11.1.min.js"></script>
-    <script src="style/uikit.min.js"></script>
-    <script src="style/ourjavascript.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+
+    <script src="javascript/jquery-1.11.1.min.js"></script>
+    <script src="javascript/uikit.min.js"></script>
 </head>
+<style>
 
-<body style="background-color: #381252">
+.link {
+  stroke: #0099FF;
+}
 
+.node text {
+  font: 11px Helvetica;
+  pointer-events: none;
+}
+
+#d3graph {
+  margin-top: 50px;
+}
+
+</style>
+
+<body style="background-color: #FFFFFF">
 
 <div id="mainbody" class="uk-grid">
     
     <div class="uk-width-1-4">
         <a href="index.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Home</h3>
         </div>
         </a>
@@ -25,7 +43,7 @@
 
     <div class="uk-width-1-4">
         <a href="connectionfilter.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Connection Filter</h3>
         </div>
         </a>
@@ -33,7 +51,7 @@
     
     <div class="uk-width-1-4">
         <a href="connectionvisualize.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Connection Visualizer</h3>
         </div>
         </a>
@@ -41,13 +59,121 @@
 
     <div class="uk-width-1-4">
         <a href="studentinitiated.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu" >
             <h3>Student-Initiated Connections</h3>
         </div>
         </a>
-    </div> 
-       
+    </div>        
 </div>
 
+<div class="hint">
+  <p>Press CTRL/CMD + F to Search</p>
+</div>
+
+<div id="d3graph" style="width=100%; height=100%; margin=10px;">
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script>
+
+var width1 = "100%",
+    width2 = 1300,
+    height = 1300,
+    root;
+
+var svg = d3.select("#d3graph").append("svg")
+    .attr({
+      "width": width1,
+      "height": height
+    });
+
+var force = d3.layout.force()
+    .gravity(.06)
+    .distance(100)
+    .charge(-75)
+    .friction(0.9)
+    .theta(0.9)
+    .alpha(0.5)
+    .size([width2, height]);   
+
+$.ajax(
+{      
+  type: 'GET',
+  url: 'data/graph.json',
+  data: "{}",
+  contentType: "application/json; charset=utf-8",
+  dataType: "json",
+  async: false,
+  success: function (data) {
+    console.log(data);
+    console.log(JSON.parse(JSON.stringify(data)));
+    force
+    .nodes(data.nodes)
+    .links(data.links)
+    .start();         
+
+    var link = svg.selectAll(".link")
+    .data(data.links)
+    .enter().append("line")           
+    .attr("class", "link");          
+    var node = svg.selectAll(".node")
+    .data(data.nodes)
+    .enter().append("g")
+    .attr("class", "node")
+    .call(force.drag);           
+    node.append("circle")
+    .attr("r", function(d) { 
+      if (d.name.length <=4) {
+        return 6.5; 
+      }else
+        return 4.5; 
+    })        
+    node.select("circle")
+    .style("fill", color);           
+    function color(d) {
+      if (d.name.length <=4) {
+        return "#FF0000"
+      }else
+        return "#FFCC00"; // leaf node
+    }
+
+    node.append("text")
+      .attr("dy", ".05em")
+      .text(function(d) { return d.name; });            
+
+    force.on("tick", function() {
+      link.attr("x1", function(d) { return d.source.x; })          
+      .attr("y1", function(d) { return d.source.y; })
+      .attr("x2", function(d) { return d.target.x; })
+      .attr("y2", function(d) { return d.target.y; });            
+
+      node.on("mouseover", function (d) {
+        d3.select(this).select('text').style('font-size', '20px');
+      })
+      .on("mouseout", function(d) {
+        d3.select(this).select('text').style('font-size', '10px');
+      })
+      .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    });
+  },
+
+
+  error: function(xhr, status) {
+    alert("hatada:" + xhr.responseXML);
+  },
+}); //ajax
+
+</script>
+</div>
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56306705-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

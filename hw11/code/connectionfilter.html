@@ -1,22 +1,26 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Wheaton Connections</title>
-    
-	<link rel="stylesheet" href="style/uikit.almost-flat.min.css"/>
-	<link rel="stylesheet" href="style/style.css"/>
-    <script src="style/jquery-1.11.1.min.js"></script>
-    <script src="style/uikit.min.js"></script>
-    <script src="style/ourjavascript.js"></script>
+
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="css/uikit.almost-flat.min.css"/>
+	<link rel="stylesheet" href="css/style.css"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+
+    <script src="javascript/jquery-1.11.1.min.js"></script>
+    <script src="javascript/uikit.min.js"></script>
+    <script src="javascript/connectionfilter.js"></script>
 </head>
 
-<body style="background-color: #381252">
+<body>
 
 <div id="mainbody" class="uk-grid">
     
     <div class="uk-width-1-4">
         <a href="index.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Home</h3>
         </div>
         </a>
@@ -24,7 +28,7 @@
 
     <div class="uk-width-1-4">
         <a href="connectionfilter.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Connection Filter</h3>
         </div>
         </a>
@@ -32,7 +36,7 @@
     
     <div class="uk-width-1-4">
         <a href="connectionvisualize.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Connection Visualizer</h3>
         </div>
         </a>
@@ -40,7 +44,7 @@
 
     <div class="uk-width-1-4">
         <a href="studentinitiated.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #C2EAF9">
+        <div class="uk-panel uk-panel-box menu">
             <h3>Student-Initiated Connections</h3>
         </div>
         </a>
@@ -56,9 +60,9 @@
 	<div class="uk-width-1-3">
         <div class="uk-panel uk-panel-box">
             <form class="uk-form">
-                <fieldset>
-                    <label><input type="checkbox"> 2 Course Connections &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                    <label><input type="checkbox"> 3 Course Connections</label>
+                <fieldset class="2or3">
+                    <label><input type="checkbox" id="2course"> 2 Course Connections &nbsp;&nbsp;&nbsp;&nbsp;</label>
+                    <label><input type="checkbox" id="3course"> 2 or 3 Course Connections</label>
                 </fieldset>
             </form>
         </div>
@@ -72,10 +76,11 @@
 			<ul id="tabcontent" class="uk-switcher uk-margin">
     			<li class="uk-active">
     				<form class="uk-form">
-    					<fieldset>
-        					<div class="uk-form-row"><label><input type="checkbox"> Natural Sciences</label></div>
-        					<div class="uk-form-row"><label><input type="checkbox"> Social Sciences</label></div>
-        					<div class="uk-form-row"><label><input type="checkbox"> Humanities</label></div>
+    					<fieldset class="divisionform">
+        					<div class="uk-form-row"><label><input type="checkbox" id="natsci"> Natural Sciences</label></div>
+        					<div class="uk-form-row"><label><input type="checkbox" id="socsci"> Social Sciences</label></div>
+        					<div class="uk-form-row"><label><input type="checkbox" id="hum"> Humanities</label></div>
+                            <div class="uk-form-row"><label><input type="checkbox" id="qa"> Quantitative Analysis</label></div>
     					</fieldset>
 					</form>
     			</li>
@@ -126,7 +131,31 @@
     <!-- filtered results column with Letter > Connections > Connection Courses panels -->
     <div class="uk-width-2-3">
         <div class="uk-panel uk-panel-box">
-            <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-menu'}">
+            <!-- currently where connections from json go -->
+            <div id="jsonfill"></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56306705-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
+
+<!-- Originally Intended UI Navigation -->
+<!-- <ul class="uk-subnav uk-subnav-pill" data-uk-switcher="{connect:'#connection-menu'}">
                 <li><a href="#A">A</a></li>
                 <li><a href="#B">B</a></li>
                 <li><a href="#C">C</a></li>
@@ -360,7 +389,7 @@
             <ul id="connection-info" class="uk-switcher">
                 <ul id="connection-A" class="uk-switcher">
                     <li>
-                            <h3><a href="http://wheatoncollege.edu/catalog/conx_23007/">Connection 23007: African Diaspora in New World (Choose 2 or 3)</a></h3>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_23007/">Connection 23007 - African Diaspora in New World (Choose 2 or 3)</a></h3>
                             <dl class="uk-description-list-line">
                                 <dt>Creative Arts</dt>
                                 <dd><a href="http://wheatoncollege.edu/catalog/musc_272/">MUSC 272</a> African American Originals I: Spirituals, Blues and All That Jazz</dd>
@@ -374,7 +403,7 @@
                             </dl>
                     </li>
                     <li>
-                            <h3><a href="http://wheatoncollege.edu/catalog/conx_23007/">Connection 23001: African Worlds (Choose 2 or 3)</a></h3>
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_23007/">Connection 23001 - African Worlds (Choose 2 or 3)</a></h3>
                             <dl class="uk-description-list-line">
                                 <dt>Creative Arts</dt>
                                 <dd><a href="http://wheatoncollege.edu/catalog/musc_212/">MUSC 212</a> World Music: Africa and the Americas</dd>
@@ -395,46 +424,20 @@
                             </dl>
                     </li>
                     <li>
-                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome</a></h3>
-                            <dl class="uk-description-list-horizontal">
+                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075 - All roads lead to Rome</a></h3>
+                            <dl class="uk-description-list-line">
                                 <dt>Art History</dt>
                                 <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
                                 <dt>History</dt>
                                 <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
                             </dl>
                     </li>
-                    <li>
-                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome</a></h3>
-                            <dl class="uk-description-list-horizontal">
-                                <dt>Art History</dt>
-                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
-                                <dt>History</dt>
-                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
-                            </dl>
-                    </li>
-                    <li>
-                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome</a></h3>
-                            <dl class="uk-description-list-horizontal">
-                                <dt>Art History</dt>
-                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
-                                <dt>History</dt>
-                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
-                            </dl>
-                    </li>
-                    <li>
-                            <h3><a href="http://wheatoncollege.edu/catalog/conx_20075/">Connections 20075. All roads lead to Rome...</a></h3>
-                            <dl class="uk-description-list-horizontal">
-                                <dt>Art History</dt>
-                                <dd><a href="http://wheatoncollege.edu/catalog/arth_274/">ARTH 274</a> Visualizing Ancient Rome</dd>
-                                <dt>History</dt>
-                                <dd><a href="http://wheatoncollege.edu/catalog/hist_111/"> HIST 111</a>History of Europe to 1000 CE</dd>
-                            </dl>
-                    </li>
+
                 </ul>
                 <ul id="connection-B" class="uk-switcher">
                     <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma1</a></h3>
-                        <dl class="uk-description-list-horizontal">
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026 - Biopharma</a></h3>
+                        <dl class="uk-description-list-line">
                             <dt>Biology</dt>
                             <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
                             <dd> </dd>
@@ -443,33 +446,23 @@
                         </dl>
                     </li>
                     <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma2</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                        <h3><a href="http://wheatoncollege.edu/catalog/conx_23010/">CONX 23010 - Black Aesthetics (Choose 2 or 3)</a></h3>
+                        <dl class="uk-description-list-line">
+                            <dt>Creative Arts</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/musc_272/">MUSC 272</a> African-Amer Originals</dd>
+                            <dd><a href="http://wheatoncollege.edu/catalog/musc_273/">MUSC 273</a>African-Amer Original II</dd>
                             <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma3</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dt>Humanities</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/arth_263/">ARTH 263</a> African-Amer Art</dd>
+                            <dd><a href="http://wheatoncollege.edu/catalog/eng_209/">ENG 209</a>Afrian-Amer Lit</dd>
                             <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. Biopharma4</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
+                            <dt>History</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/hist_209/">HIST 209</a> African-Amer History to 1877</dd>
+                            <dd><a href="http://wheatoncollege.edu/catalog/hist_210/">HIST 210</a>African-Amer History since 1877</dd>
                             <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
+                            <dt>Social Sciences</dt>
+                            <dd><a href="http://wheatoncollege.edu/catalog/pols_327/">POLS 327</a> Black Political Thought</dd>
+                            <dd><a href="http://wheatoncollege.edu/catalog/pols_371/">POLS 371</a>African-Amercian Politics</dd>
                         </dl>
                     </li>
                 </ul>
@@ -494,72 +487,7 @@
                             <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
                         </dl>
                     </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC3</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
-                            <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC4</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
-                            <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC5</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
-                            <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC6</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
-                            <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC7</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
-                            <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
-                    <li>
-                        <h3><a href="http://wheatoncollege.edu/catalog/conx_20026/">Connections 20026. CCCCCCC8</a></h3>
-                        <dl class="uk-description-list-horizontal">
-                            <dt>Biology</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/bio_112/">BIO 112</a> Cells and Genes</dd>
-                            <dd> </dd>
-                            <dt>Economics</dt>
-                            <dd><a href="http://wheatoncollege.edu/catalog/econ_112/">ECON 112</a> Introduction to Microeconomics</dd>
-                        </dl>
-                    </li>
                 </ul>
             </ul>
     
-    </div>
-    </div>
-</div>
-
-</body>
-</html>
+    </div> -->

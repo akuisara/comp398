@@ -1,22 +1,23 @@
-<DOCTYPE! html>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Wheaton Connections</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/uikit.almost-flat.min.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
     
-    <link rel="stylesheet" href="style/uikit.almost-flat.min.css"/>
-    <link rel="stylesheet" href="style/style.css"/>
-    <script src="style/jquery-1.11.1.min.js"></script>
-    <script src="style/uikit.min.js"></script>
-    <script src="style/ourjavascript.js"></script>
+    <script src="javascript/jquery-1.11.1.min.js"></script>
+    <script src="javascript/uikit.min.js"></script>
 </head>
 
-<body style="background-color: #381252">
+<body style="background-color: white">
 
 <div id="mainbody" class="uk-grid">
 
     <div class="uk-width-1-1">
         <!-- title grid block that includes our header panel -->
-        <div class="uk-panel uk-panel-box uk-panel-box-primary">
             <div class="uk-panel-title uk-text-large"><h1 style="color: #381252;">Wheaton Connections</h1></div>
             <div style="color: #381252;"><p>This website allows you to browse the pre-approved connections available at Wheaton College (MA). On the Filter Connections Page, they're sorted by number of courses within the connection (always either two or three), the divisions of the courses, and the major and minor departments of the courses. In addition, one specific course can be selected, and the connections that include that course will be displayed. (Only courses that are part of a connection are listed.) On the Connections Visualizer, you can see an interactive Force-Directed Graph of all offered Connections. Finally, the Student-Initiated Connections form is offered, which can then be submitted to the Registrar's.</p>
 
@@ -28,7 +29,6 @@
                 </div>
             </div>
             </div>
-        </div>
     </div>
 </div>
 
@@ -36,27 +36,27 @@
 
     <div class="uk-width-1-3">
         <a href="connectionfilter.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center;">
-            <h2>Connection Filter</h2>
-            Filter by Division, Department, Semester, etc.
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #39f">
+            <h1 style="color:white">Connection Filter</h1>
+            <h3 style="color:white">Filter by Division, Department, Semester, etc.</h3>
         </div>
         </a>
     </div>
     
     <div class="uk-width-1-3">
         <a href="connectionvisualize.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center;">
-            <h2>Connection Visualizer</h2>
-            See a graphical representation of all connections
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #39f">
+            <h1 style="color:white">Connection Visualizer</h1>
+            <h3 style="color:white">See a graphical representation of all connections</h3>
         </div>
         </a>
     </div>
 
     <div class="uk-width-1-3">
         <a href="studentinitiated.html">
-        <div class="uk-panel uk-panel-box" style="text-align: center;">
-            <h2>Student-Initiated Connections</h2>
-            Submit your own connection form to Registar's
+        <div class="uk-panel uk-panel-box" style="text-align: center; background-color: #39f">
+            <h1 style="color:white">New Connections</h1>
+            <h3 style="color:white">Submit your own connection form to Registar's</h3>
         </div>
         </a>
     </div>
@@ -64,7 +64,7 @@
 </div>
 
 <!-- modal that describes UIKit structure -->
-    <p style="text-align: right; padding-right: 10px; padding-left: 10px; position:fixed; bottom:0;"><a href="#uikitdeets" data-uk-modal>UIKit Structure</a></p>
+    <p style="text-align: right; padding-right: 10px; padding-left: 10px; position:fixed; bottom:0;"><a href="#uikitdeets" data-uk-modal>UIKit Structure</a><br><a href="sitemap.xml">SiteMap</a></p>
         <div id="uikitdeets" class="uk-modal">
             <div class="uk-modal-dialog">
             <p>
@@ -96,11 +96,22 @@
 
                 <br><br>
 
-                <img src="skeleton.png"/>
+                <img src="images/skeleton.png"/>
             </p>
             </div>
 
         </div>
 
+<!-- google analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-56306705-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
 </body>
 </html>

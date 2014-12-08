@@ -1,6 +1,6 @@
 console.log("Linked List");
 
-function Node(string1,string2) {
+function Node(string1, string2) {
 	this.state = string1;
 	this.abbreviation = string2;
 	this.next = null;
@@ -12,43 +12,42 @@ var LinkedList = function() {
 	this.num = 0;
 };
 
+LinkedList.prototype.Append = function(string1, string2) {
+	if (this.head === null){
+		this.head = new Node(string1, string2);
+		this.tail = this.head;
+	}
+	else {
+		this.tail.next = new Node(string1, string2);
+		this.tail = this.tail.next;
+	}
+	this.num++;
+};
+
 LinkedList.prototype.Populate = function() {
 	var fs = require('fs');
 
-	fs.readFile("states.csv", {encoding: 'utf-8'}, function(err,data){
-		data=data.split(/\n+/);
-		var stateName = [], abbreviationName = [];
+	var data = fs.readFileSync("states.csv").toString().split("\n");
 
-		for (var i = 0; i < data.length - 1; i++) {
-			var string1 = "";
-			for (var j = 0; j < data[i].length - 5; j++) {
-				string1+= data[i][j];
-			}
-			stateName[i] = string1;
-			var string2 = "";
-			for (var k = (data[i].length - 4); k < data[i].length; k++) {
-				string2+= data[i][k];
-			}
-			abbreviationName[i] = string2;
+	var stateName = [];
+	var abbreviationName = [];
 
-			var newNode = new Node(string1,string2);
 
-			if (this.head === null){
-				this.head = newNode;
-				this.tail = newNode;
-			}
-			else {
-				this.head.next = newNode;
-				this.tail = newNode;
-			}
-
-			this.num++;
-
-			if (err){
-				console.log(err);
-			}
+	for (var i = 1; i < data.length; i++) {
+		var string1 = "";
+		for (var j = 0; j < data[i].length - 5; j++) {
+			string1+= data[i][j];
 		}
-	});
+		stateName[i] = string1;
+		var string2 = "";
+		for (var k = (data[i].length - 4); k < data[i].length; k++) {
+			string2+= data[i][k];
+		}
+
+		abbreviationName[i] = string2;
+
+		this.Append(string1, string2);
+	}
 };
 
 LinkedList.prototype.Search = function() {
@@ -63,21 +62,39 @@ LinkedList.prototype.Search = function() {
 	}
 };
 
-LinkedList.prototype.DisplayContent = function() {
+LinkedList.prototype.DisplayContent = function(list) {
+
 	var fs = require('fs');
-	var outputFile = fs.open("Output.txt", 3);
+
+	var p = this.head;
+
+	var string;
+
+	while(p !== null) {
+		console.log(p);
+		string += JSON.stringify(p);
+		p = p.next;
+	}
+
+	fs.writeFile("output.txt", string.split("\\"), function(err) {
+		if(err) {
+			console.log(err);
+		} else {
+			console.log("The file was saved!");
+		}
+	});
 	
 };
 
 function Driver(){
+
 	var list = new LinkedList();
 
 	list.Populate();
 
 	// list.Search();
 
-	list.DisplayContent();
-
+	list.DisplayContent(list);
 }
 
 Driver();
