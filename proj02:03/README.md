@@ -2,7 +2,7 @@ proj02/03
 ===
 
 - Source Code: https://github.com/398project2/398project2
-- Demo: [wheatconx](wheatconx.herokuapp.com)
+- Demo: [wheatconx](https://wheatconx.herokuapp.com)
 - Collaborators: Bryan, Tyler
 
 ###Features:
