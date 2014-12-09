@@ -1,9 +1,9 @@
 proj01
 ===
 
-Source Code: https://github.com/lithiah/WheatonConnections/tree/gh-pages
-Demo: [wheatonconnections](http://wheatonconnections.me)
-Collaborator: Lithia
+- Source Code: https://github.com/lithiah/WheatonConnections/tree/gh-pages
+- Demo: [wheatonconnections](http://wheatonconnections.me)
+- Collaborator: Lithia
 
 ###Features:
 - Connection Filter - a filter for students to look up course connections
